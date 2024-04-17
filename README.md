@@ -3,9 +3,10 @@ A point-of-sale app built using Laravel and React.
 
 ## Installation
 1. Create a database
-2. Copy the ```.env.example``` file and rename it to ```.env```
-3. Edit the ```.env``` file to match your environment configuration
-4. Execute
+2. Navigate to ```src/api```
+3. Copy the ```.env.example``` file and rename it to ```.env```
+4. Edit the ```.env``` file to match your environment configuration
+5. Execute
 ```bash
 composer update
 npm install
