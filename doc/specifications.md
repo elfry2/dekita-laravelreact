@@ -1,4 +1,5 @@
 # Specifications
+- The expected output is point-of-sale app for multi-branch business
 - A business may have multiple branches, and each branch multiple outlets
 - A cashier may work in a branch and use one of the outlets at a time
 - A branch may buy, sell, and return goods
