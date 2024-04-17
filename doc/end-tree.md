@@ -20,7 +20,7 @@ Ideally, an end tree must identify every end required for the attainment of the 
 the output as described in [description.md](description.md)\
 _user management\
 __authorisation\
-___auth\
+___auth (elfry2, in-progress)\
 _cash flow\
 __authorisation\
 _product management\
