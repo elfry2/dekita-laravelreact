@@ -10,15 +10,21 @@ An end may have siblings. A sibling is an alternative to each other in terms of 
 
 In the tree, each line is an end. Ends on the same depth are siblings, whereas those on a lower depth are children to the end immediately above it.
 
-Ideally, an end tree must specify every end required for the attainment of the primary end, but this is impossible, and isn't very beneficial anyway. Therefore it should be considered good enough if it has successfully made the order of attainment obvious.
+Ideally, an end tree must identify every end required for the attainment of the primary end, but this is impossible, and isn't very beneficial anyway. It should be enough to identify only the ends which identification result in more benefit than cost.
 
 ## Content
 the output as described in [description.md](description.md)\
-_auth\
 _user management\
+__authorisation\
+___auth\
 _branch management\
+__authorisation\
 _product management\
+__authorisation\
 _sales\
 __buy\
+___authorisation\
 __return\
-__sell
+___authorisation\
+__sell\
+___auth\
