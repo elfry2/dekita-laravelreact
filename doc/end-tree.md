@@ -14,11 +14,19 @@ Ideally, an end tree must specify every end required for the attainment of the p
 
 ## Content
 the output described in [description.md](description.md)
+
 -auth
+
 -user management
+
 -branch management
+
 -product management
+
 -sales
+
 --buy
+
 --return
+
 --sell
