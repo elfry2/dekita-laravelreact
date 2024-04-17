@@ -1,6 +1,6 @@
 # Description
 ## Overview
-A description is a free-form... description about the output of the project. No specific format is necessary, but it's important here to be detailed.
+A description is a free-form... description about the output of the project. No specific format is mandatory, but it's important here to be detailed.
 ## Content
 The expected output is point-of-sale app for multi-branch business
 A business may have multiple branches, and each branch multiple outlets
