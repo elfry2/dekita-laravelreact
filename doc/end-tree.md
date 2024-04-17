@@ -2,7 +2,7 @@
 ## Overview
 An end-tree specifies what ends need to be attained for the attainment of a parent end.
 
-An end in the everyday sense is a goal, an objective to be attained. In this context, however, an end is not the desire, but rather the object being desired. For instance, if the desire is _I want to drink water_, then the end here is _water_.
+An end is a goal, an objective to be attained. It is not the act of desiring, but rather the object being desired. For instance, if the desire is _I want to drink water_, then the end here is _water_.
 
 An end may have children. A child is an end that has to be attained before its parent, if the parent is to be attained.
 
@@ -15,18 +15,18 @@ Ideally, an end tree must specify every end required for the attainment of the p
 ## Content
 the output described in [description.md](description.md)
 
--auth
+_auth
 
--user management
+_user management
 
--branch management
+_branch management
 
--product management
+_product management
 
--sales
+_sales
 
---buy
+__buy
 
---return
+__return
 
---sell
+__sell
