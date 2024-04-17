@@ -21,4 +21,4 @@ _product management\
 _sales\
 __buy\
 __return\
-__sell\
+__sell
