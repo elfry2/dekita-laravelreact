@@ -1,4 +1,4 @@
-# End-Tree
+# End Tree
 ## Overview
 An end-tree specifies what ends need to be attained for the attainment of a parent end.
 
