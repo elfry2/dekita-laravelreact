@@ -6,7 +6,7 @@ A point-of-sale app built using Laravel and React.
 2. Navigate to ```src/api```
 3. Copy the ```.env.example``` file and rename it to ```.env```
 4. Edit the ```.env``` file to match your environment configuration
-5. Execute
+5. In ```src/api```, execute
 ```bash
 composer update
 npm install
@@ -17,14 +17,12 @@ php artisan storage:link
 ```
 
 ## Usage
-In a terminal, execute
+In a terminal pointed to ```src/api```, execute
 ```bash
-cd src/api
 php artisan serve
 ```
-then, in another terminal, execute
+then, in another terminal pointed to ```src/app```, execute
 ```bash
-cd ../app
 npm start
 ```
 then visit http://localhost:3000 (or whichever port ```npm``` serves on) on your browser.
