@@ -17,7 +17,7 @@ the output as described in [description.md](description.md)\
 _user management\
 __authorisation\
 ___auth\
-_branch management\
+_cash flow\
 __authorisation\
 _product management\
 __authorisation\
