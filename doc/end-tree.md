@@ -10,6 +10,10 @@ An end may have siblings. A sibling is an alternative to each other in terms of 
 
 In the tree, each line is an end. Ends on the same depth are siblings, whereas those on a lower depth are children to the end immediately above it.
 
+The specification of an end may include also the identifier of the handler as well as its status.
+
+A status may be either in-progress, done, or abandoned.
+
 Ideally, an end tree must identify every end required for the attainment of the primary end, but this is impossible, and isn't very beneficial anyway. It should be enough to identify only the ends which identification result in more benefit than cost.
 
 ## Content
