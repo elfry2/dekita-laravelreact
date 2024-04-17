@@ -13,8 +13,7 @@ In the tree, each line is an end. Ends on the same depth are siblings, whereas t
 Ideally, an end tree must specify every end required for the attainment of the primary end, but this is impossible, and isn't very beneficial anyway. Therefore it should be considered good enough if it has successfully made the order of attainment obvious.
 
 ## Content
-the output described in [description.md](description.md)
-
+the output described in [description.md](description.md)\
 _auth\
 _user management\
 _branch management\
