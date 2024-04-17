@@ -2,7 +2,7 @@
 ## Overview
 An end tree specifies what ends need to be attained for the attainment of a parent end.
 
-An end is a goal, an objective to be attained. The meaning of the term differs here to its everyday sense. Here it is not so much the act of desiring or the desire itself than the object being desired. For instance, if the desire is _I want to drink water_, then the end here is _water_.
+An end in the everyday sense is a goal, an objective to be attained. Here, however, the meaning of the term is a bit different. Here it is not so much the act of desiring or the desire itself than the object being desired. For instance, if the desire is _I want to drink water_, then the end here is _water_.
 
 An end may have children. A child is an end that has to be attained before its parent, if the parent is to be attained.
 
