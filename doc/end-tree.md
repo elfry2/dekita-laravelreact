@@ -10,7 +10,10 @@ An end may have siblings. A sibling is an alternative to each other in terms of 
 
 In the tree, each line is an end. Ends on the same depth are siblings, whereas those on a lower depth are children to the end immediately above it.
 
-output
+Ideally, an end tree must specify every end required for the attainment of the primary end, but this is impossible, and isn't very beneficial anyway. Therefore it should be considered good enough if it has successfully made the order of attainment obvious.
+
+## Content
+the output described in [description.md](description.md)
 -auth
 -user management
 -branch management
