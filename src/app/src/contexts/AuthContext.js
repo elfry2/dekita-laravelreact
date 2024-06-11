@@ -1,4 +1,4 @@
-export function handleLogin(e) {
-	e.preventDefault();
-	alert('Signed in!');
+export function handleLogin(event, email, password) {
+	event.preventDefault();
+	alert("Hi, " + email + ":" + password );
 } 
