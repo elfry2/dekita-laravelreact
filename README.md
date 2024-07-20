@@ -28,7 +28,7 @@ npm start
 then visit http://localhost:3000 (or whichever port ```npm``` serves on) on your browser.
 
 ## Minimising
-mise aims to be reducible to a minimal, general-purpose, and ready-to-use Laravel+React framework. This feature is under construction.
+mise aims to be reducible to a minimal, general-purpose, and ready-to-use Laravel+React starter kit. This feature is under construction.
 
 ## Contributing
 Read the following files in order and see where you can help:
