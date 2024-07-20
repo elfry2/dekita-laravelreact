@@ -1,5 +1,5 @@
 # mise
-A point-of-sale app built using Laravel and React.
+A point-of-sale app built with Laravel and React.
 
 ## Installation
 1. Create a database
