@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
-import DashboardLayout from "./layouts/DashboardLayout";
-import EnsureAuthenticatedMiddleware from "./middlewares/EnsureuthenticatedMiddleware";
-import HomePage from "./pages/HomePage";
-import UserIndexPage from "./pages/UserIndexPage";
+import DashboardLayout from "./layouts/DashboardLayout.jsx";
+import EnsureAuthenticatedMiddleware from "./middlewares/EnsureAuthenticatedMiddleware.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import UserIndexPage from "./pages/UserIndexPage.jsx";
 
-export default const router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <EnsureAuthenticatedMiddleware />,
@@ -14,13 +14,17 @@ export default const router = createBrowserRouter([
         element: <DashboardLayout />,
         children: [
           {
-            path: "/users";
-            element: <Users />
+            path: "/users",
+            element: <UserIndexPage />
           }
         ]
       }
     ],
+  },
+  {
     path: "/",
     element: <HomePage />
   }
 ]);
+
+export default router;
