@@ -21,16 +21,6 @@ export default function HomePage() {
 
   const emailRef = useRef();
 
-  const handleShow = () => {
-    setShow(true);
-
-    emailRef.current && emailRef.current.focus();
-  }
-
-  const handleClose = () => {
-    setShow(false);
-  }
-
   return (
     <Container
       fluid
@@ -67,11 +57,14 @@ export default function HomePage() {
                     'flex-grow-1',
                     'pe-3'
                   )}>
-                  <Nav.Link
-                    className="text-white"
-                    onClick={handleShow}
-                  >
-                    Sign In
+                  <Nav.Link>
+                    <Link
+                      className={classNames(
+                        'text-white',
+                        'text-decoration-none'
+                      )}
+                      to="/login"
+                    >Log In</Link>
                   </Nav.Link>
                 </Nav>
               </Offcanvas.Body>
@@ -79,57 +72,6 @@ export default function HomePage() {
           </Container>
         </Navbar>
       ))}
-      <Offcanvas
-        show={show}
-        onHide={handleClose}
-        placement="end"
-        style={{
-          maxWidth: '20em',
-        }}
-      >
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Sign In</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          <p className={classNames(
-            'mt-3',
-            'text-center',
-          )}>Sign in to continue.</p>
-          <form className={classNames(
-            'mt-5',
-          )}>
-            <FloatingLabel
-              label="Email address"
-              className="mb-3"
-            >
-              <Form.Control
-                type="email"
-                placeholder="name@example.com"
-                _ref={emailRef}
-              />
-            </FloatingLabel>
-            <FloatingLabel label="Password">
-              <Form.Control type="password" placeholder="Password" />
-            </FloatingLabel>
-            <Stack
-              direction="horizontal"
-              className={classNames('mt-3')}
-            >
-              <Button
-                variant="outline-dark"
-              className={classNames(
-                'border-0',
-                  'ms-auto',
-                  'mt-3'
-              )}
-              >
-                <BoxArrowInRight />
-                <span className={classNames('ms-2')}>Sign In</span>
-              </Button>
-            </Stack>
-          </form>
-        </Offcanvas.Body>
-      </Offcanvas>
       <Row
         className={classNames(
           'align-items-center',

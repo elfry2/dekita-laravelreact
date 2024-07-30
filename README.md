@@ -25,7 +25,7 @@ then, in another terminal pointed to ```src/app```, execute
 ```bash
 npm start
 ```
-then visit http://localhost:3000 (or whichever port ```npm``` serves on) on your browser.
+then visit http://localhost:5173 (or whichever port ```npm``` serves on) on your browser.
 
 ## Minimising
 mise aims to be reducible to a minimal, general-purpose, and ready-to-use Laravel+React starter kit. This feature is under construction.
