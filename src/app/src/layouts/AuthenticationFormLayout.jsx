@@ -1,8 +1,14 @@
-import { Outlet } from 'react-router-dom';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
-export default function AuthenticationFormLayout () {
-  return <>
-    <h2>AuthenticationFormLayout</h2>
-    <Outlet />
-  </>;
+export default function AuthenticationFormLayout ({children}) {
+  return <Container
+    className="mx-auto"
+    style={{maxWidth: "24em"}}
+  >
+    <Row className="align-items-center vh-100">
+      <Col>{children}</Col>
+    </Row>
+  </Container>;
 }

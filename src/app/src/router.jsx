@@ -2,8 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import ApiPage from "./pages/ApiPage.jsx";
 import AuthenticationFormLayout from './layouts/AuthenticationFormLayout.jsx'
 import HomePage from "./pages/HomePage.jsx";
-import LoginPage from './pages/LoginPage.jsx';
 import RedirectIfAuthenticatedMiddleware from './middlewares/RedirectIfAuthenticated.jsx';
+import RegisterPage from './pages/RegisterPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -11,20 +11,13 @@ const router = createBrowserRouter([
     element: <HomePage />
   },
   {
-    path: '/',
-    element: <RedirectIfAuthenticatedMiddleware />,
-    children: [
-      {
-        path: '/',
-        element: <AuthenticationFormLayout />,
-        children: [
-          {
-            path: '/login',
-            element: <LoginPage />
-          }
-        ]
-      }
-    ]
+    path: '/register',
+    element:
+    <RedirectIfAuthenticatedMiddleware>
+      <AuthenticationFormLayout>
+        <RegisterPage />
+      </AuthenticationFormLayout>
+    </RedirectIfAuthenticatedMiddleware>,
   },
   {
     path: "/api/user",

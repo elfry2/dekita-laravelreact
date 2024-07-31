@@ -24,7 +24,7 @@ export default function HomePage() {
   return (
     <Container
       fluid
-      className={classNames('vh-100')}
+      className="vh-100"
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
@@ -32,11 +32,7 @@ export default function HomePage() {
         backgroundPosition: 'center',
       }}>
       {['sm'].map((expand) => (
-        <Navbar
-          key={expand}
-          expand={expand}
-          fixed="top"
-        >
+        <Navbar key={expand} expand={expand} fixed="top">
           <Container fluid>
             {/* <Navbar.Brand href="#">Navbar Offcanvas</Navbar.Brand> */}
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
@@ -52,40 +48,21 @@ export default function HomePage() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav
-                  className={classNames(
-                    'justify-content-end',
-                    'flex-grow-1',
-                    'pe-3'
-                  )}>
-                  <Nav.Link>
-                    <Link
-                      className={classNames(
-                        'text-white',
-                        'text-decoration-none'
-                      )}
-                      to="/login"
-                    >Log In</Link>
-                  </Nav.Link>
+                  className="justify-content-end flex-grow-1">
+                  <Link to="/register">
+                    <Button variant="outline-primary" className="border-0 text-white">
+                      Register
+                    </Button>
+                  </Link>
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>
         </Navbar>
       ))}
-      <Row
-        className={classNames(
-          'align-items-center',
-          'vh-100',
-          'mx-5'
-        )}>
+      <Row className="align-items-center vh-100 mx-5">
         <Col>
-          <span className={classNames(
-            'h1',
-            'bg-white',
-            'px-2',
-            'py-1',
-            'fw-bold'
-          )}>
+          <span className="h1 bg-white px-2 py-1 fw-bold">
             Your business, made simple.
           </span>
         </Col>
