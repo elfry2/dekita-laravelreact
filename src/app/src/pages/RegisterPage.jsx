@@ -2,6 +2,7 @@ import { ChevronLeft } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import { PersonAdd } from 'react-bootstrap-icons';
 import { useRef } from 'react';
+import { useState } from 'react';
 import axiosInstance from '../utils/axios-instance.js';
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -16,8 +17,12 @@ export default function RegisterPage () {
   const passwordRef = useRef();
   const passwordConfirmationRef = useRef();
 
+  const [errors, setErrors] = useState(null);
+
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    setErrors(null);
 
     const user = {
       name: nameRef.current.value,
@@ -30,7 +35,13 @@ export default function RegisterPage () {
     axiosInstance.post('/register', user)
       .then(({data}) => {
         console.log(data);
-      });
+      })
+      .catch((error) => {
+        const response = error.response;
+
+        setErrors(response.data.errors);
+      })
+    ;
   }
 
   return <>
@@ -45,15 +56,22 @@ export default function RegisterPage () {
           type="text"
           placeholder="Full name"
           ref={nameRef}
-          autoFocus
+          isInvalid={errors && errors.name}
         />
+        { errors && errors.name && errors.name.map((message) => (
+          <Form.Text as="small" className="text-danger">{message}</Form.Text>
+        ))}
       </FloatingLabel>
       <FloatingLabel label="Username" className="mt-3">
         <Form.Control
           type="text"
           placeholder="Username"
           ref={usernameRef}
+          isInvalid={errors && errors.username}
         />
+        { errors && errors.username && errors.username.map((message) => (
+          <Form.Text as="small" className="text-danger">{message}</Form.Text>
+        ))}
       </FloatingLabel>
       <FloatingLabel label="Email address" className="mt-3">
         <Form.Control
@@ -61,17 +79,25 @@ export default function RegisterPage () {
           placeholder="name@example.com"
           aria-describedby="emailHelpBlock"
           ref={emailRef}
+          isInvalid={errors && errors.email}
         />
-        <Form.Text id="emailHelpBlock">
+        { errors && errors.email && errors.email.map((message) => (
+          <Form.Text as="small" className="text-danger">{message}</Form.Text>
+        ))}
+        { (!errors || !errors.email) && <Form.Text id="emailHelpBlock" as="small">
           Verification links will be sent to this address
-        </Form.Text>
+        </Form.Text> }
       </FloatingLabel>
       <FloatingLabel label="Password" className="mt-3">
         <Form.Control
           type="password"
           placeholder="Password"
           ref={passwordRef}
+          isInvalid={errors && errors.password}
         />
+        { errors && errors.password && errors.password.map((message) => (
+          <Form.Text as="small" className="text-danger">{message}</Form.Text>
+        ))}
       </FloatingLabel>
       <FloatingLabel label="Confirm password" className="mt-3">
         <Form.Control

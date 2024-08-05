@@ -25,8 +25,8 @@ axiosInstance.interceptors.response.use(
       }
     }
 
-    catch(error) {
-      console.log(error);
+    catch(err) {
+      console.log(err);
     }
 
     throw error;
