@@ -1,6 +1,7 @@
 import { ChevronLeft } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import { PersonAdd } from 'react-bootstrap-icons';
+import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import { useState } from 'react';
 import axiosInstance from '../utils/axios-instance.js';
@@ -16,6 +17,7 @@ export default function RegisterPage () {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmationRef = useRef();
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState(null);
 
@@ -35,6 +37,7 @@ export default function RegisterPage () {
     axiosInstance.post('/register', user)
       .then(({data}) => {
         console.log(data);
+        navigate('/verify/' + encodeURIComponent(user.email));
       })
       .catch((error) => {
         const response = error.response;
