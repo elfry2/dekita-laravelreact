@@ -37,7 +37,7 @@ export default function RegisterPage () {
     axiosInstance.post('/register', user)
       .then(({data}) => {
         console.log(data);
-        navigate('/verify/' + encodeURIComponent(user.email));
+        navigate('/verify-email/' + encodeURIComponent(user.email));
       })
       .catch((error) => {
         const response = error.response;
