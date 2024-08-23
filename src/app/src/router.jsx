@@ -1,9 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import ApiPage from "./pages/ApiPage.jsx";
-import AuthenticationFormLayout from './layouts/AuthenticationFormLayout.jsx'
+import FormLayout from './layouts/FormLayout.jsx'
+import EmailVerifiedPage from './pages/EmailVerifiedPage.jsx';
 import HomePage from "./pages/HomePage.jsx";
 import RedirectIfAuthenticatedMiddleware from './middlewares/RedirectIfAuthenticated.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
+import LoginPage from './pages/LoginPage.jsx';
 import VerifyEmailPage from './pages/VerifyEmailPage.jsx';
 
 const router = createBrowserRouter([
@@ -12,20 +14,36 @@ const router = createBrowserRouter([
     element: <HomePage />
   },
   {
+    path: '/login',
+    element:
+    <RedirectIfAuthenticatedMiddleware>
+      <FormLayout>
+        <LoginPage />
+      </FormLayout>
+    </RedirectIfAuthenticatedMiddleware>,
+  },
+  {
     path: '/register',
     element:
     <RedirectIfAuthenticatedMiddleware>
-      <AuthenticationFormLayout>
+      <FormLayout>
         <RegisterPage />
-      </AuthenticationFormLayout>
+      </FormLayout>
     </RedirectIfAuthenticatedMiddleware>,
   },
   {
     path: 'verify-email/:email',
     element: 
-    <AuthenticationFormLayout>
+    <FormLayout>
       <VerifyEmailPage />
-    </AuthenticationFormLayout>
+    </FormLayout>
+  },
+  {
+    path: 'email-verified',
+    element: 
+    <FormLayout>
+      <EmailVerifiedPage />
+    </FormLayout>
   },
   {
     path: "/api/user",

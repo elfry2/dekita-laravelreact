@@ -28,8 +28,10 @@ export default function VerifyEmailPage () {
         <ChevronLeft /><span className="ms-2">Back</span>
       </Button>
     </Link>
-    <p className="mt-3">We sent an email verification link to <b>{email}</b>. Visit the link to activate your account.</p>
-    <p>If the link isn't visited until {expirationTime} UTC, your account will be deleted and you will need to register again.</p>
-    <p>You may leave this page now.</p>
+    <p className="mt-3">
+      Your email has been verified successfully! You may now <Link
+      to="/login"
+      className="text-decoration-none"
+    >sign in</Link>.</p>
   </>
 }

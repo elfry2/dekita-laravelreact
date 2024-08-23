@@ -51,6 +51,11 @@ export default function HomePage() {
                   className="justify-content-end flex-grow-1">
                   <Link to="/register">
                     <Button variant="outline-primary" className="border-0 text-white">
+                      Sign In 
+                    </Button>
+                  </Link>
+                  <Link to="/register">
+                    <Button variant="outline-primary" className="border-0 text-white">
                       Register
                     </Button>
                   </Link>
@@ -63,7 +68,7 @@ export default function HomePage() {
       <Row className="align-items-center vh-100 mx-5">
         <Col>
           <span className="h1 bg-white px-2 py-1 fw-bold">
-            Your business, made simple.
+            Your whole business, with less headache.
           </span>
         </Col>
       </Row>
