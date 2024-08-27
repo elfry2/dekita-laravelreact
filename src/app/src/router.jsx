@@ -1,12 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import ApiPage from "./pages/ApiPage.jsx";
-import FormLayout from './layouts/FormLayout.jsx'
-import EmailVerifiedPage from './pages/EmailVerifiedPage.jsx';
-import HomePage from "./pages/HomePage.jsx";
+import ApiPage from "./pages/Api.jsx";
+import FormLayout from './layouts/Form.jsx'
+import EmailVerifiedPage from './pages/EmailVerified.jsx';
+import HomePage from "./pages/Home.jsx";
 import RedirectIfAuthenticatedMiddleware from './middlewares/RedirectIfAuthenticated.jsx';
-import RegisterPage from './pages/RegisterPage.jsx';
-import LoginPage from './pages/LoginPage.jsx';
-import VerifyEmailPage from './pages/VerifyEmailPage.jsx';
+import RegisterPage from './pages/Register.jsx';
+import LoginPage from './pages/Login.jsx';
+import VerifyEmailPage from './pages/VerifyEmail.jsx';
 
 const router = createBrowserRouter([
   {

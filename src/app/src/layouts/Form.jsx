@@ -2,7 +2,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-export default function FormLayout ({children}) {
+export default function Form({children}) {
   return <Container
     className="mx-auto"
     style={{maxWidth: "24em"}}

@@ -1,8 +1,8 @@
 import {useEffect} from 'react';
 import {useState} from 'react';
-import axiosInstance from '../utils/axios-instance.js'
+import axiosInstance from '../utilities/axios-instance.js'
 
-export default function ApiPage({url}) {
+export default function Api({url}) {
   const [response, setResponse] = useState();
 
   useEffect(() => {

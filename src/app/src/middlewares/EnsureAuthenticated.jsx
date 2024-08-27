@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import axiosClient from "../axios-client";
 
-export default function EnsureAuthenticatedMiddleware({children}) {
+export default function EnsureAuthenticated({children}) {
     
 }

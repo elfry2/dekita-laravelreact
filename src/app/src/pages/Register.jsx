@@ -4,13 +4,14 @@ import { PersonAdd } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import { useState } from 'react';
-import axiosInstance from '../utils/axios-instance.js';
+import axiosInstance from '../utilities/axios-instance.js';
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
+import LoadingSpan from '../components/LoadingSpan';
 import Stack from 'react-bootstrap/Stack';
 
-export default function RegisterPage () {
+export default function Register() {
 
   const nameRef = useRef();
   const usernameRef = useRef();
@@ -20,9 +21,12 @@ export default function RegisterPage () {
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    setIsLoading(true);
 
     setErrors(null);
 
@@ -43,6 +47,8 @@ export default function RegisterPage () {
         const response = error.response;
 
         setErrors(response.data.errors);
+
+        setIsLoading(false);
       })
     ;
   }
@@ -111,14 +117,17 @@ export default function RegisterPage () {
         />
       </FloatingLabel>
       <Stack className="mt-3" direction="horizontal">
-        <Button
-          type="submit"
-          className="ms-auto"
-          variant="primary"
-          onClick={handleSubmit}
-        >
-          <PersonAdd /><span className="ms-2">Register</span>
-        </Button>
+        <div className="ms-auto" />
+        {
+          isLoading ? <LoadingSpan />
+          : <Button
+            type="submit"
+            variant="primary"
+            onClick={handleSubmit}
+          >
+            <PersonAdd /><span className="ms-2">Register</span>
+          </Button>
+        }
       </Stack>
     </Form>
     <p className="text-center mt-5">

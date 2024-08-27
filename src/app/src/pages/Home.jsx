@@ -16,7 +16,7 @@ import Stack from 'react-bootstrap/Stack';
 import backgroundImage from '../assets/pexels-apasaric-2506923.jpg';
 import classNames from 'classnames';
 
-export default function HomePage() {
+export default function Home() {
   const [show, setShow] = useState(false);
 
   const emailRef = useRef();

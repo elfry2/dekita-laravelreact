@@ -17,9 +17,25 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
-        $request->session()->regenerate();
+        // $request->session()->regenerate();
 
-        return response()->noContent();
+        // return response()->noContent();
+
+        $authenticatedUser = Auth::user();
+
+        if(!$authenticatedUser->email_verified_at) return response([
+            'errors' => [
+                'messages' => [
+                    'Your email has not yet been verified. Please click on the verification link to activate your account.'
+                ]
+            ]
+        ], 401);
+
+        $authenticatedUser->token = $authenticatedUser
+            ->createToken('main')
+            ->plainTextToken;
+
+        return $authenticatedUser;
     }
 
     /**

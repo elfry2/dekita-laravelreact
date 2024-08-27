@@ -4,22 +4,27 @@ import { BoxArrowInRight } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import { useState } from 'react';
-import axiosInstance from '../utils/axios-instance.js';
+import axiosInstance from '../utilities/axios-instance.js';
+import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
+import LoadingSpan from '../components/LoadingSpan';
 import Stack from 'react-bootstrap/Stack';
 
-export default function LoginPage () {
+export default function Login() {
 
   const usernameRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    setIsLoading(true);
 
     setErrors(null);
 
@@ -36,6 +41,10 @@ export default function LoginPage () {
         const response = error.response;
 
         setErrors(response.data.errors);
+
+        console.log(errors);
+
+        setIsLoading(false);
       })
     ;
   }
@@ -46,6 +55,13 @@ export default function LoginPage () {
         <ChevronLeft /><span className="ms-2">Back</span>
       </Button>
     </Link>
+    {
+      errors && errors.messages && errors.messages.map((message) =>
+        <Alert variant="danger" key={message.toString()} dismissible>
+          {message}
+        </Alert>
+      )
+    }
     <Form>
       <FloatingLabel label="Username" className="mt-3">
         <Form.Control
@@ -71,14 +87,16 @@ export default function LoginPage () {
         ))}
       </FloatingLabel>
       <Stack className="mt-3" direction="horizontal">
-        <Button
+        <div className="ms-auto" />
+        { isLoading ? <LoadingSpan />
+        : <Button
           type="submit"
           className="ms-auto"
           variant="primary"
           onClick={handleSubmit}
         >
           <BoxArrowInRight /><span className="ms-2">Sign In</span>
-        </Button>
+        </Button> }
       </Stack>
     </Form>
     <p className="text-center mt-5">
