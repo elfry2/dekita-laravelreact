@@ -4,6 +4,7 @@ import { PersonAdd } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import { useState } from 'react';
+import { useAuthenticatedUser as useAuthenticatedUserContext } from '../contexts/AuthenticatedUser.jsx'
 import axiosInstance from '../utilities/axios-instance.js';
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -18,10 +19,12 @@ export default function Register() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmationRef = useRef();
-  const navigate = useNavigate();
+  const navigateTo = useNavigate();
 
   const [errors, setErrors] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const { setAuthenticatedUser } = useAuthenticatedUserContext();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,10 +44,15 @@ export default function Register() {
     axiosInstance.post('/register', user)
       .then(({data}) => {
         console.log(data);
-        navigate('/verify-email/' + encodeURIComponent(user.email));
+        
+        setAuthenticatedUser(data);
+
+        setIsLoading(false);
       })
       .catch((error) => {
         const response = error.response;
+
+        console.log(error);
 
         setErrors(response.data.errors);
 

@@ -49,7 +49,7 @@ export default function Home() {
               <Offcanvas.Body>
                 <Nav
                   className="justify-content-end flex-grow-1">
-                  <Link to="/register">
+                  <Link to="/login">
                     <Button variant="outline-primary" className="border-0 text-white">
                       Sign In 
                     </Button>
@@ -68,7 +68,7 @@ export default function Home() {
       <Row className="align-items-center vh-100 mx-5">
         <Col>
           <span className="h1 bg-white px-2 py-1 fw-bold">
-            Your whole business, with less headache.
+            Your business, without the headache.
           </span>
         </Col>
       </Row>

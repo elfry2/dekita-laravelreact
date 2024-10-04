@@ -39,6 +39,11 @@ class RegisteredUserController extends Controller
         // Auth::login($user);
 
         // return response()->noContent();
+
+        $user->token = $user
+            ->createToken('main')
+            ->plainTextToken;
+
         return response($user);
     }
 }

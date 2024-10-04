@@ -1,6 +1,7 @@
 import { ChevronLeft } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import { BoxArrowInRight } from 'react-bootstrap-icons';
+import { useAuthenticatedUser as useAuthenticatedUserContext } from '../contexts/AuthenticatedUser.jsx'
 import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import { useState } from 'react';
@@ -16,10 +17,12 @@ export default function Login() {
 
   const usernameRef = useRef();
   const passwordRef = useRef();
-  const navigate = useNavigate();
+  const navigateTo = useNavigate();
 
   const [errors, setErrors] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const { setAuthenticatedUser } = useAuthenticatedUserContext();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,7 +38,9 @@ export default function Login() {
 
     axiosInstance.post('/login', user)
       .then(({data}) => {
-        console.log(data);
+        setAuthenticatedUser(data);
+
+        setIsLoading(false);
       })
       .catch((error) => {
         const response = error.response;

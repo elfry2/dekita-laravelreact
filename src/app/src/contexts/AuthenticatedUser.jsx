@@ -3,7 +3,10 @@ import { useContext } from 'react';
 import { useState } from 'react';
 import axiosInstance from '../utilities/axios-instance.js';
 
-const AuthenticatedUser = createContext(null);
+const AuthenticatedUser = createContext({
+  authenticatedUser: null,
+  setAuthenticatedUser: null,
+});
 // token is to be included as a property of the auth'd user object
 
 export const AuthenticatedUserProvider = ({children}) => {
@@ -14,13 +17,16 @@ export const AuthenticatedUserProvider = ({children}) => {
     
     if (!authenticatedUser) {
       localStorage.removeItem('authenticatedUser');
-
-      return;
     }
 
-    localStorage.setItem('authenticatedUser', authenticatedUser);
+    else {
+      localStorage.setItem(
+        'authenticatedUser',
+        JSON.stringify(authenticatedUser),
+      );
+    }
 
-    _setAuthenticatedUser(localStorage.getItem(authenticatedUser));
+    _setAuthenticatedUser(JSON.parse(localStorage.getItem('authenticatedUser')));
   }
 
   return <AuthenticatedUser.Provider value={{
@@ -31,4 +37,4 @@ export const AuthenticatedUserProvider = ({children}) => {
   </AuthenticatedUser.Provider>
 }
 
-export const useAuthenticatedUser = useContext(AuthenticatedUser);
+export const useAuthenticatedUser = () => useContext(AuthenticatedUser);

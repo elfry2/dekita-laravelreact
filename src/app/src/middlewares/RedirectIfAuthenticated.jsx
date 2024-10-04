@@ -1,10 +1,15 @@
-import { Navigate } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
+import { useAuthenticatedUser as useAuthenticatedUserContext } from "../contexts/AuthenticatedUser.jsx";
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function RedirectIfAuthenticated({children}) {
-  // if(true) return <Navigate to="/" />
+  const { isDefault, authenticatedUser } = useAuthenticatedUserContext();
 
-  return <>
-    {children}
-  </>;
+  const navigateTo = useNavigate();
+
+  useEffect(() => {
+    if(authenticatedUser) navigateTo('/dashboard');
+  });
+
+  return children;
 }

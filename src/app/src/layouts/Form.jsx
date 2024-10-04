@@ -7,7 +7,8 @@ export default function Form({children}) {
     className="mx-auto"
     style={{maxWidth: "24em"}}
   >
-    <Row className="align-items-center vh-100">
+    {/* <Row className="align-items-center vh-100"> */}
+    <Row className="mt-3">
       <Col>{children}</Col>
     </Row>
   </Container>;
