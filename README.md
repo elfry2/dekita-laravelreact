@@ -23,11 +23,11 @@ In a terminal pointed to ```src/api```, execute
 ```bash
 php artisan serve
 ```
-then, in another terminal pointed to ```src/app```, execute
+Then, in another terminal pointed to ```src/app```, execute
 ```bash
 npm start
 ```
-then visit http://localhost:3000 (or whichever port ```npm``` serves on) on your browser.
+Then visit http://localhost:3000 (or whichever port ```npm``` serves on) on your browser.
 
 ## Contributing
 Read the following files in order and see where you can help:
