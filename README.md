@@ -1,5 +1,5 @@
 # dekita-laravelreact
-A to-do list app built with Laravel and React, which I use as a template for my other Laravel+React projects. Work in progress.
+A to-do list app built with Laravel 11 and React 18, which I use as a template for my other Laravel+React projects. Work in progress.
 
 ![image](https://github.com/user-attachments/assets/c1d5fe8e-7e4d-4848-98aa-ba72bf0bdc2a)
 
