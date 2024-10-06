@@ -21,14 +21,3 @@ the output as described in [description.md](description.md)\
 _user management\
 __authorisation\
 ___auth (elfry2, in-progress)\
-_cash flow\
-__authorisation\
-_product management\
-__authorisation\
-_sales\
-__buy\
-___authorisation\
-__return\
-___authorisation\
-__sell\
-___auth
