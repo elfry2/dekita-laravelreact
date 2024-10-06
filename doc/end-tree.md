@@ -21,3 +21,6 @@ the output as described in [description.md](description.md)\
 _user management\
 __authorisation\
 ___authentication (elfry2, in-progress)\
+_list management\
+__authentication\
+
