@@ -1,5 +1,5 @@
-# mise
-A point-of-sale app built with Laravel and React.
+# dekita-laravelreact
+A to-do list app built with Laravel and React, which I use as a template for my other Laravel+React projects.
 
 ## Installation
 1. Create a database
@@ -25,10 +25,7 @@ then, in another terminal pointed to ```src/app```, execute
 ```bash
 npm start
 ```
-then visit http://localhost:5173 (or whichever port ```npm``` serves on) on your browser.
-
-## Minimising
-mise aims to be reducible to a minimal, general-purpose, and ready-to-use Laravel+React starter kit. This feature is under construction.
+then visit http://localhost:3000 (or whichever port ```npm``` serves on) on your browser.
 
 ## Contributing
 Read the following files in order and see where you can help:
