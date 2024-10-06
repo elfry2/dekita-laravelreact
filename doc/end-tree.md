@@ -20,4 +20,4 @@ Ideally, an end tree must declare every end required for the attainment of the p
 the output as described in [description.md](description.md)\
 _user management\
 __authorisation\
-___auth (elfry2, in-progress)\
+___authentication (elfry2, in-progress)\
