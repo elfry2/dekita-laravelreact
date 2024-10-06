@@ -13,7 +13,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import Row from 'react-bootstrap/Row';
 import Stack from 'react-bootstrap/Stack';
-import backgroundImage from '../assets/pexels-apasaric-2506923.jpg';
+import backgroundImage from '../assets/pexels-seven11nash-380769.jpg';
 import classNames from 'classnames';
 
 export default function Home() {
@@ -68,7 +68,7 @@ export default function Home() {
       <Row className="align-items-center vh-100 mx-5">
         <Col>
           <span className="h1 bg-white px-2 py-1 fw-bold">
-            Your business, without the headache.
+            {{/* Some text here */}}
           </span>
         </Col>
       </Row>
