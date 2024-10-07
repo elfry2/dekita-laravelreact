@@ -50,12 +50,12 @@ export default function Home() {
                 <Nav
                   className="justify-content-end flex-grow-1">
                   <Link to="/login">
-                    <Button variant="primary" className="border-0 text-white">
+                    <Button variant="outline-dark" className="border-0">
                       Sign In 
                     </Button>
                   </Link>
                   <Link to="/register" className="ms-2">
-                    <Button variant="outline-primary" className="border-0 text-white">
+                    <Button variant="outline-dark" className="border-0">
                       Register
                     </Button>
                   </Link>
@@ -68,7 +68,7 @@ export default function Home() {
       <Row className="align-items-center vh-100 mx-5">
         <Col>
           <span className="h1 bg-white px-2 py-1 fw-bold">
-            Be organised. Stay organised.
+            Stay organised.
           </span>
         </Col>
       </Row>

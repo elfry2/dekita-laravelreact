@@ -1,14 +1,8 @@
-import { useAuthenticatedUser as useAuthenticatedUserContext } from '../contexts/AuthenticatedUser';
+import { useAuthentication as useAuthenticationContext } from '../contexts/Authentication';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 export default function Logout () {
-  const { setAuthenticatedUser } = useAuthenticatedUserContext();
-  const navigateTo = useNavigate();
+  const { setToken: setAuthenticationToken } = useAuthenticationContext();
 
-  useEffect(() => {
-    setAuthenticatedUser();
-
-    navigateTo('/login');
-  });
+  useEffect(() => setAuthenticationToken());
 }

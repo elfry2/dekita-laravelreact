@@ -31,11 +31,11 @@ class AuthenticatedSessionController extends Controller
         //     ]
         // ], 401);
 
-        $authenticatedUser->token = $authenticatedUser
+        $authenticationToken = $authenticatedUser
             ->createToken('main')
             ->plainTextToken;
 
-        return response($authenticatedUser);
+        return response($authenticationToken);
     }
 
     /**

@@ -1,11 +1,19 @@
-import { useAuthenticatedUser as useAuthenticatedUserContext } from '../contexts/AuthenticatedUser.jsx'
 import { useContext } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axiosInstance from '../utilities/axios-instance.js';
 
 export default function Dashboard() {
-  const { authenticatedUser } = useAuthenticatedUserContext();
+  const [authenticatedUser, setAuthenticatedUser] = useState({
+    name: null,
+  });
 
-  console.log(authenticatedUser);
+  useEffect(() => {
+    axiosInstance.get('/user')
+      .then(({data}) => setAuthenticatedUser(data))
+      .catch(error =>console.error(error));
+  });
 
   return <>
     <h1>Hi, {authenticatedUser.name}! This is your dashboard.</h1>

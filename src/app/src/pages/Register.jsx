@@ -4,7 +4,7 @@ import { PersonAdd } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import { useState } from 'react';
-import { useAuthenticatedUser as useAuthenticatedUserContext } from '../contexts/AuthenticatedUser.jsx'
+import { useAuthentication as useAuthenticationContext } from '../contexts/Authentication.jsx'
 import axiosInstance from '../utilities/axios-instance.js';
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -24,7 +24,7 @@ export default function Register() {
   const [errors, setErrors] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { setAuthenticatedUser } = useAuthenticatedUserContext();
+  const { setAuthentication } = useAuthenticationContext();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,11 +43,9 @@ export default function Register() {
 
     axiosInstance.post('/register', user)
       .then(({data}) => {
-        console.log(data);
-        
-        setAuthenticatedUser(data);
-
         setIsLoading(false);
+
+        navigateTo('/account-registered');
       })
       .catch((error) => {
         const response = error.response;

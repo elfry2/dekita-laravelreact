@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { AuthenticatedUserProvider as AuthenticatedUserContextProvider } from './contexts/AuthenticatedUser.jsx';
+import { AuthenticationProvider as AuthenticationContextProvider } from './contexts/Authentication.jsx';
 import AccountRegisteredPage from './pages/AccountRegistered.jsx';
 import ApiPage from "./pages/Api.jsx";
 import DashboardLayout from './layouts/Dashboard.jsx';
@@ -22,42 +22,42 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element:
-    <AuthenticatedUserContextProvider>
+    <AuthenticationContextProvider>
       <RedirectIfAuthenticatedMiddleware>
         <FormLayout>
           <LoginPage />
         </FormLayout>
       </RedirectIfAuthenticatedMiddleware>,
-    </AuthenticatedUserContextProvider>
+    </AuthenticationContextProvider>
   },
   {
     path: '/register',
     element:
-    <AuthenticatedUserContextProvider>
+    <AuthenticationContextProvider>
       <RedirectIfAuthenticatedMiddleware>
         <FormLayout>
           <RegisterPage />
         </FormLayout>
       </RedirectIfAuthenticatedMiddleware>
-    </AuthenticatedUserContextProvider>
+    </AuthenticationContextProvider>
   },
   {
     path: '/logout',
     element:
-    <AuthenticatedUserContextProvider>
+    <AuthenticationContextProvider>
     <EnsureAuthenticatedMiddleware>
       <LogoutPage />
     </EnsureAuthenticatedMiddleware>
-    </AuthenticatedUserContextProvider>
+    </AuthenticationContextProvider>
   },
   {
     path: '/dashboard',
     element:
-    <AuthenticatedUserContextProvider>
+    <AuthenticationContextProvider>
       <EnsureAuthenticatedMiddleware>
         <DashboardLayout />
       </EnsureAuthenticatedMiddleware>
-    </AuthenticatedUserContextProvider>
+    </AuthenticationContextProvider>
   },
   {
     path: '/account-registered',
@@ -87,13 +87,13 @@ const router = createBrowserRouter([
   {
     path: '/users',
     element:
-    <AuthenticatedUserContextProvider>
+    <AuthenticationContextProvider>
       <EnsureAuthenticatedMiddleware>
         <DashboardLayout>
           <UserIndexPage />
         </DashboardLayout>
       </EnsureAuthenticatedMiddleware>
-    </AuthenticatedUserContextProvider>
+    </AuthenticationContextProvider>
   }
 ]);
 
