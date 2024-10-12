@@ -46,7 +46,7 @@ class PreferenceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Preference $preference)
+    public function edit(Request $request, Preference $preference)
     {
         $model = '\\App\\Models\\Preference';
 
