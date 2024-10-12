@@ -13,7 +13,9 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = [
+        $model = '\\App\\Models\\User';
+
+        $records = [
             [
                 'name' => 'Administrator',
                 'email' => 'admin@localhost',
@@ -30,6 +32,6 @@ class UserSeeder extends Seeder
             ],
         ];
 
-        foreach($users as $user) \App\Models\User::create($user);
+        foreach($records as $record) $model::create($record);
     }
 }

@@ -12,13 +12,17 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $roles = [
-            'Administrator',
-            'Standard User',
+        $model = '\\App\\Models\\RoleSeeder';
+
+        $records = [
+            [
+                'name' => 'Administrator'
+            ],
+            [
+                'name' => 'Standard User'
+            ],
         ];
 
-        foreach($roles as $role) \App\Models\Role::create([
-            'name' => $role
-        ]);
+        foreach($records as $record) $model::create($record);
     }
 }
