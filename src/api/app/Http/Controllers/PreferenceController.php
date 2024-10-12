@@ -30,10 +30,10 @@ class PreferenceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+    //     //
+    // }
 
     /**
      * Display the specified resource.
@@ -46,7 +46,15 @@ class PreferenceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, Preference $preference)
+    // public function edit(Preference $preference)
+    // {
+    //     //
+    // }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Preference $preference)
     {
         $model = '\\App\\Models\\Preference';
 
@@ -67,14 +75,6 @@ class PreferenceController extends Controller
             'value' => $validated->value,
         ]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    // public function update(Request $request, Preference $preference)
-    // {
-    //     //
-    // }
 
     /**
      * Remove the specified resource from storage.
