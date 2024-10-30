@@ -7,6 +7,7 @@ import FormLayout from './layouts/Form.jsx'
 import EmailVerifiedPage from './pages/EmailVerified.jsx';
 import EnsureAuthenticatedMiddleware from './middlewares/EnsureAuthenticated.jsx'
 import HomePage from "./pages/Home.jsx";
+import PreferenceFeatureTestForm from "./pages/PreferenceFeatureTestForm.jsx";
 import RedirectIfAuthenticatedMiddleware from './middlewares/RedirectIfAuthenticated.jsx';
 import RegisterPage from './pages/Register.jsx';
 import LoginPage from './pages/Login.jsx';
@@ -18,6 +19,15 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />
+  },
+  {
+    path: '/test/preferences',
+    element:
+    <AuthenticationContextProvider>
+      <EnsureAuthenticatedMiddleware>
+        <PreferenceFeatureTestForm />
+      </EnsureAuthenticatedMiddleware>
+    </AuthenticationContextProvider>
   },
   {
     path: '/login',

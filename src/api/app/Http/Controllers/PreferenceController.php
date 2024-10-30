@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 
 class PreferenceController extends Controller
 {
-    public function getRouteKeyName(): string {
-        return 'key';
-    }
-
     /**
      * Display a listing of the resource.
      */
@@ -30,10 +26,29 @@ class PreferenceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
+    public function store(Request $request)
+    {
+        $model = '\\App\\Models\\Preference';
+
+        $request->merge([
+            'user_id' => $request->user()->id,
+        ]);
+
+        $validated = (object) $request->validate([
+            'key' => 'required',
+            'value' => 'nullable',
+            'user_id' => 'exists:users,id'
+        ]);
+
+        $record = $model::updateOrCreate([
+            'user_id' => $validated->user_id,
+            'key' => $validated->key,
+        ], [
+                'value' => $validated->value,
+            ]);
+
+        return $record;
+    }
 
     /**
      * Display the specified resource.
@@ -54,27 +69,10 @@ class PreferenceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Preference $preference)
-    {
-        $model = '\\App\\Models\\Preference';
-
-        $request->merge([
-            'user_id' => $request->user->id,
-        ]);
-
-        $validated = (object) $request->validate([
-            'key' => 'required',
-            'value' => 'nullable',
-            'user_id' => 'exists:users,id'
-        ]);
-
-        $model::updateOrCreate([
-            'user_id' => $validated->user_id,
-            'key' => $validated->key,
-        ], [
-            'value' => $validated->value,
-        ]);
-    }
+    // public function update(Request $request, Preference $preference)
+    // {
+    //     //
+    // }
 
     /**
      * Remove the specified resource from storage.

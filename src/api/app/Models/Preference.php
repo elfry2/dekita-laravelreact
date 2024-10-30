@@ -15,6 +15,7 @@ class Preference extends Model
     protected $fillable = [
         'key',
         'value',
+        'user_id',
     ];
 
     public function user(): BelongsTo {
