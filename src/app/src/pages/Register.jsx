@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { useAuthentication as useAuthenticationContext } from '../contexts/Authentication.jsx'
-import axiosInstance from '../utilities/axios-instance.js';
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import LoadingSpan from '../components/LoadingSpan';
 import Stack from 'react-bootstrap/Stack';
+import axiosInstance from '../utilities/axios-instance.js';
 
 export default function Register() {
 
