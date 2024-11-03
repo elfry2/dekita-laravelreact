@@ -19,22 +19,22 @@ export default function DashboardSidebar () {
   ];
 
   return <div>
-    {listGroups.map(listGroup => Object.hasOwn(listGroup, 'items'))
-      ? <div>
-          <h5>{listGroup.name}</h5>
-          <ListGroup key={listGroup.name}>
-            {listGroup.items.map(item => 
-              <ListGroup.Item
-                key={item.name}
-                onClick={() => navigateTo(item.link)}
-              >{item.name}</ListGroup.Item>
-            )}
-          </ListGroup>
-        </div>
-      : <ListGroup key={listGroup.name}>
-          <ListGroup.Item onClick={navigateTo(listGroup.link)}
-          >{listGroup.name}</ListGroup.Item>
+    {listGroups.map(listGroup => Object.hasOwn(listGroup, 'items')
+    ? <div>
+        <h5>{listGroup.name}</h5>
+        <ListGroup key={listGroup.name}>
+          {listGroup.items.map(item => 
+            <ListGroup.Item
+              key={item.name}
+              onClick={() => navigateTo(item.link)}
+            >{item.name}</ListGroup.Item>
+          )}
         </ListGroup>
+      </div>
+    : <ListGroup key={listGroup.name}>
+        <ListGroup.Item onClick={navigateTo(listGroup.link)}
+        >{listGroup.name}</ListGroup.Item>
+      </ListGroup>
     }
   </div>
 
