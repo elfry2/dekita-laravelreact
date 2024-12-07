@@ -1,10 +1,14 @@
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import DashboardSidebar from '../components/DashboardSidebar.jsx';
+import axiosInstance from '../utilities/axios-instance.js';
 import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axiosInstance from '../utilities/axios-instance.js';
 
-export default function Dashboard() {
+export default function Dashboard({children}) {
   const [authenticatedUser, setAuthenticatedUser] = useState({
     name: null,
   });
@@ -15,8 +19,14 @@ export default function Dashboard() {
       .catch(error =>console.error(error));
   });
 
-  return <>
-    <h1>Hi, {authenticatedUser.name}! This is your dashboard.</h1>
-    <Link to="/logout">Sign Out</Link>
-  </>
+  return <Container fluid>
+    <Row>
+      <Col sm="3">
+        <DashboardSidebar />
+      </Col>
+      <Col>
+        {children}
+      </Col>
+    </Row>
+  </Container>
 }

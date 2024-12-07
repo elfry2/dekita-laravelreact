@@ -6,6 +6,7 @@ import DashboardLayout from './layouts/Dashboard.jsx';
 import FormLayout from './layouts/Form.jsx'
 import EmailVerifiedPage from './pages/EmailVerified.jsx';
 import EnsureAuthenticatedMiddleware from './middlewares/EnsureAuthenticated.jsx'
+import Hello from './pages/Hello.jsx';
 import HomePage from "./pages/Home.jsx";
 import PreferenceFeatureTestForm from "./pages/PreferenceFeatureTestForm.jsx";
 import RedirectIfAuthenticatedMiddleware from './middlewares/RedirectIfAuthenticated.jsx';
@@ -61,11 +62,13 @@ const router = createBrowserRouter([
     </AuthenticationContextProvider>
   },
   {
-    path: '/dashboard',
+    path: '/hello',
     element:
     <AuthenticationContextProvider>
       <EnsureAuthenticatedMiddleware>
-        <DashboardLayout />
+        <DashboardLayout>
+          <Hello />
+        </DashboardLayout>
       </EnsureAuthenticatedMiddleware>
     </AuthenticationContextProvider>
   },
