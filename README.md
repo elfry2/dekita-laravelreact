@@ -17,6 +17,11 @@ php artisan migrate:fresh --seed
 php artisan key:generate
 php artisan storage:link
 ```
+6. Navigate to ```../app```
+7. Execute
+```bash
+npm install
+```
 
 ## Usage
 In a terminal pointed to ```src/api```, execute
@@ -25,7 +30,7 @@ php artisan serve
 ```
 Then, in another terminal pointed to ```src/app```, execute
 ```bash
-npm start
+npm run dev
 ```
 Then visit http://localhost:3000 (or whichever port ```npm``` serves on) on your browser.
 
