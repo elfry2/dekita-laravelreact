@@ -1,7 +1,10 @@
-import Nav from 'react-bootstrap/Nav';
 import { useMatch } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { Check2Square } from 'react-bootstrap-icons';
+import { EmojiSmile } from 'react-bootstrap-icons';
+import { People } from 'react-bootstrap-icons';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 export default function DashboardSidebar () {
   const navigateTo = useNavigate();
@@ -10,56 +13,62 @@ export default function DashboardSidebar () {
 
   const nav = [
     {
+      name: 'Hello',
+      icon: EmojiSmile,
+      link: '/hello',
+    },
+    {
       name: 'Lists',
-      items: [
+      icon: Check2Square,
+      items: [ // To be replaced with taskLists.
         {
           name: 'task',
-          link: '/tasks',
+          link: '/task-lists/1',
         },
         {
           name: 'lists',
-          link: '/lists',
+          link: '/task-lists/2',
         },
         {
           name: 'go',
-          link: '/go',
+          link: '/task-lists/3',
         },
         {
           name: 'here',
-          link: '/here',
+          link: '/task-lists/4',
         },
       ],
     },
     {
       name: 'Users',
+      icon: People,
       link: '/users',
     },
   ];
 
-  return <>
-  <h3 class="mt-3">app.name</h3>
-  <Nav variant="pills" className="flex-sm-column mt-3">
-    {nav.map((item) => Object.hasOwn(item, 'items')
-      ? <><span className="ms-3">{item.name}</span>
-        {item.items.map((item) => <Nav.Item>
-        <Nav.Link
-          className="text-dark ms-3"
+  return <div className="me-5">
+    <h3>app.name</h3>
+    <div className="mt-3" />
+    {nav.map((item) => <ListGroup><ListGroup.Item
+      action={!Object.hasOwn(item, 'items')}
+      active={Object.hasOwn(item, 'link') && useMatch(item.link)}
+      className="border-0 pe-0"
+      key={item.name}
+      onClick={() => navigateTo(item.link)}
+    >
+      {!item.icon ? '' : <item.icon className="me-2" />}
+      {item.name}
+      {!Object.hasOwn(item, 'items') ? '' : 
+        <ListGroup className="mt-2">
+          {item.items.map((item) => <ListGroup.Item
+          action
+          active={Object.hasOwn(item, 'link') && useMatch(item.link)}
+          className="border-0"
           key={item.link}
-          activeKey={() => useMatch(item.link ? item.link : '')}
           onClick={() => navigateTo(item.link)}
-        >{item.name}
-        </Nav.Link>
-        </Nav.Item>)}</>
-      : <Nav.Item>
-        <Nav.Link
-          className="text-dark"
-          key={item.link}
-          activeKey={() => useMatch(item.link ? item.link : '')}
-          onClick={() => navigateTo(item.link)}
-        >{item.name}
-        </Nav.Link>
-      </Nav.Item>)}
-  </Nav>
-  </>;
+        >{item.name}</ListGroup.Item>)}</ListGroup>
+      }
+    </ListGroup.Item></ListGroup>)}
+  </div>;
 
 }

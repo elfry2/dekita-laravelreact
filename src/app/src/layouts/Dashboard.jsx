@@ -20,7 +20,7 @@ export default function Dashboard({children}) {
   });
 
   return <Container fluid>
-    <Row>
+    <Row className="mt-3">
       <Col sm="3">
         <DashboardSidebar />
       </Col>
