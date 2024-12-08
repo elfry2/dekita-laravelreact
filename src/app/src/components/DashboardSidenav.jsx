@@ -6,7 +6,7 @@ import { EmojiSmile } from 'react-bootstrap-icons';
 import { People } from 'react-bootstrap-icons';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-export default function DashboardSidebar () {
+export default function DashboardSidenav() {
   const navigateTo = useNavigate();
 
   const [taskLists, setTaskLists] = useState([]);
