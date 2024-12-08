@@ -21,7 +21,7 @@ export default function Dashboard({children}) {
 
   return <Container fluid>
     <Row className="mt-3">
-      <Col sm="3">
+      <Col sm="3" style={{maxWidth: "16em"}}>
         <DashboardSidebar />
       </Col>
       <Col>

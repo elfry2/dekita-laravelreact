@@ -46,7 +46,7 @@ export default function DashboardSidebar () {
     },
   ];
 
-  return <div className="me-5">
+  return <>
     <h3>app.name</h3>
     <div className="mt-3" />
     {nav.map((item) => <ListGroup><ListGroup.Item
@@ -56,19 +56,17 @@ export default function DashboardSidebar () {
       key={item.name}
       onClick={() => navigateTo(item.link)}
     >
-      {!item.icon ? '' : <item.icon className="me-2" />}
+      {item.icon && <item.icon className="me-2" />}
       {item.name}
-      {!Object.hasOwn(item, 'items') ? '' : 
-        <ListGroup className="mt-2">
-          {item.items.map((item) => <ListGroup.Item
-          action
-          active={Object.hasOwn(item, 'link') && useMatch(item.link)}
-          className="border-0"
-          key={item.link}
-          onClick={() => navigateTo(item.link)}
-        >{item.name}</ListGroup.Item>)}</ListGroup>
-      }
+      {Object.hasOwn(item, 'items') && <ListGroup className="mt-2">
+        {item.items.map((item) => <ListGroup.Item
+        action
+        active={Object.hasOwn(item, 'link') && useMatch(item.link)}
+        className="border-0"
+        key={item.link}
+        onClick={() => navigateTo(item.link)}
+      >{item.name}</ListGroup.Item>)}</ListGroup>}
     </ListGroup.Item></ListGroup>)}
-  </div>;
+  </>;
 
 }

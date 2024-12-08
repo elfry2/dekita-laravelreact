@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { AuthenticationProvider as AuthenticationContextProvider } from './contexts/Authentication.jsx';
+import { Navigate } from 'react-router-dom';
 import AccountRegisteredPage from './pages/AccountRegistered.jsx';
 import ApiPage from "./pages/Api.jsx";
 import DashboardLayout from './layouts/Dashboard.jsx';
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />
+  },
+  {
+    path: "/dashboard",
+    element: <Navigate to="/hello" />
   },
   {
     path: '/test/preferences',
