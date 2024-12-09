@@ -11,9 +11,6 @@ A to-do list app built with Laravel 11 and React 18, which I use as a template f
 5. Execute
 ```bash
 composer update
-rm package-lock.json
-npm install
-npm run build
 php artisan migrate:fresh --seed
 php artisan key:generate
 php artisan storage:link
