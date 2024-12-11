@@ -12,7 +12,7 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $model = '\\App\\Models\\RoleSeeder';
+        $model = '\\App\\Models\\Role';
 
         $records = [
             [
