@@ -12,12 +12,12 @@ export const AuthenticationProvider = ({children}) => {
   const [token, _setToken]
     = useState(localStorage.getItem('authenticationToken'));
 
-  const setToken = (token) => {
-    if (!token) localStorage.removeItem('authenticationToken');
+  const setToken = (providedToken) => {
+    if (!providedToken) localStorage.removeItem('authenticationToken');
 
-    else localStorage.setItem('authenticationToken', token);
+    else localStorage.setItem('authenticationToken', providedToken);
 
-    _setToken(localStorage.getItem('authenticationToken'));
+    _setToken(providedToken);
   }
 
   return <Authentication.Provider value={{

@@ -6,7 +6,6 @@ import axiosInstance from '../utilities/axios-instance.js';
 export default function RedirectIfAuthenticated({children}) {
   const navigateTo = useNavigate();
 
-  /* Without this it won't refresh. */
   const { token: authenticationToken } = useAuthenticationContext();
 
   useEffect(() => {
@@ -14,7 +13,7 @@ export default function RedirectIfAuthenticated({children}) {
       .then(({data}) => {
         navigateTo('/dashboard');
       })
-  });
+  }, [authenticationToken]);
 
   return children;
 }

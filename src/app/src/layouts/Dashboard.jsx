@@ -9,16 +9,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Dashboard({children}) {
-  const [authenticatedUser, setAuthenticatedUser] = useState({
-    name: null,
-  });
-
-  useEffect(() => {
-    axiosInstance.get('/user')
-      .then(({data}) => setAuthenticatedUser(data))
-      .catch(error =>console.error(error));
-  });
-
   return <Container fluid>
     <Row className="mt-3">
       <Col sm="3" style={{maxWidth: "16em"}}>

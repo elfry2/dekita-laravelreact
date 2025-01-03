@@ -1,7 +1,8 @@
-import { BoxArrowLeft } from 'react-bootstrap-icons';
+import { useAuthenticatedUser as useAuthenticatedUserContext } from '../contexts/AuthenticatedUser.jsx';
 import { useMatch } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { BoxArrowLeft } from 'react-bootstrap-icons';
 import { Check2Square } from 'react-bootstrap-icons';
 import { EmojiSmile } from 'react-bootstrap-icons';
 import { People } from 'react-bootstrap-icons';
@@ -14,6 +15,8 @@ export default function DashboardSidenav() {
   const navigateTo = useNavigate();
 
   const [taskLists, setTaskLists] = useState([]);
+
+  const authenticatedUser = useAuthenticatedUserContext();
 
   const nav = [
     {
@@ -73,8 +76,8 @@ export default function DashboardSidenav() {
         }}
       />
       <div className="ms-2">
-      <p className="m-0 fw-bold">{ "full name" }</p>
-      <p className="m-0 fw-light">{ "role" }</p>
+      <p className="m-0 fw-bold">{ authenticatedUser.name }</p>
+      <p className="m-0 fw-bold">{ authenticatedUser.role.name }</p>
       </div>
       <Button
         variant="outline-primary"
