@@ -1,4 +1,4 @@
-import { useAuthenticatedUser as useAuthenticatedUserContext } from '../contexts/AuthenticatedUser.jsx';
+import { useEffect } from 'react';
 import { useMatch } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -6,8 +6,9 @@ import { BoxArrowLeft } from 'react-bootstrap-icons';
 import { Check2Square } from 'react-bootstrap-icons';
 import { EmojiSmile } from 'react-bootstrap-icons';
 import { People } from 'react-bootstrap-icons';
+import axiosInstance from '../utilities/axios-instance.js';
 import Avatar from 'boring-avatars';
-import Button from 'react-bootstrap/Button';
+import Button from '../components/Button.jsx';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Stack from 'react-bootstrap/Stack';
 
@@ -16,7 +17,12 @@ export default function DashboardSidenav() {
 
   const [taskLists, setTaskLists] = useState([]);
 
-  const authenticatedUser = useAuthenticatedUserContext();
+  const [authenticatedUser, setAuthenticatedUser] = useState({
+    name: 'authenticatedUser.name',
+    role: {
+      name: 'authenticatedUser.role.name',
+    },
+  });
 
   const nav = [
     {
@@ -53,6 +59,12 @@ export default function DashboardSidenav() {
     },
   ];
 
+  useEffect(() => {
+    axiosInstance.get('/user')
+      .then(({data}) => setAuthenticatedUser(data))
+      .catch(error => console.error(error));
+  }, []);
+
   return <>
     <Stack direction="horizontal">
       {/* <img */}
@@ -76,20 +88,21 @@ export default function DashboardSidenav() {
         }}
       />
       <div className="ms-2">
-      <p className="m-0 fw-bold">{ authenticatedUser.name }</p>
-      <p className="m-0 fw-bold">{ authenticatedUser.role.name }</p>
+        <h5 className="m-0 fw-bold">{ authenticatedUser.name }</h5>
+        <small>{ authenticatedUser.role.name }</small>
       </div>
       <Button
-        variant="outline-primary"
-        className="border-0 ms-auto"
+        className="ms-auto"
+        to="/logout"
         title="Sign out"
-        onClick={ "AuthContext.logout" }><BoxArrowLeft /></Button>
+      ><BoxArrowLeft /></Button>
     </Stack>
     <div className="mt-3" />
     {nav.map((item) => <ListGroup><ListGroup.Item
       action={!Object.hasOwn(item, 'items')}
       active={Object.hasOwn(item, 'link') && useMatch(item.link)}
       className="border-0 pe-0"
+      variant={(Object.hasOwn(item, 'link') && useMatch(item.link)) ? 'secondary' : ''}
       key={item.name}
       onClick={() => navigateTo(item.link)}
     >
@@ -97,12 +110,12 @@ export default function DashboardSidenav() {
       {item.name}
       {Object.hasOwn(item, 'items') && <ListGroup className="mt-2">
         {item.items.map((item) => <ListGroup.Item
-        action
-        active={Object.hasOwn(item, 'link') && useMatch(item.link)}
-        className="border-0"
-        key={item.link}
-        onClick={() => navigateTo(item.link)}
-      >{item.name}</ListGroup.Item>)}</ListGroup>}
+          action
+          active={Object.hasOwn(item, 'link') && useMatch(item.link)}
+          className="border-0"
+          key={item.link}
+          onClick={() => navigateTo(item.link)}
+        >{item.name}</ListGroup.Item>)}</ListGroup>}
     </ListGroup.Item></ListGroup>)}
   </>;
 

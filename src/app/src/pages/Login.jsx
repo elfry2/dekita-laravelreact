@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import { useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
+import Button from '../components/Button.jsx';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import LoadingSpan from '../components/LoadingSpan';

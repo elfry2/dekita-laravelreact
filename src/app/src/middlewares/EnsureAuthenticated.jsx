@@ -13,7 +13,7 @@ export default function EnsureAuthenticated({children}) {
       .catch(error => {
         navigateTo('/login');
     })
-  }, [authenticationToken]);
+  });
 
   return children;
 }

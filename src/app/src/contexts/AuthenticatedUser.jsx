@@ -4,22 +4,24 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import axiosInstance from '../utilities/axios-instance.js';
 
-export const AuthenticatedUser = createContext({
-  name: 'aaa',
+const _authenticatedUser = {
+  name: 'authenticatedUser.name',
   role: {
-    name: 'aaa',
-  }
-});
+    name: 'authenticatedUser.role.name',
+  },
+};
+
+export const AuthenticatedUser = createContext(_authenticatedUser);
 
 export const AuthenticatedUserProvider = ({children}) => {
 
-  const [authenticatedUser, setAuthenticatedUser] = useState();
+  const [authenticatedUser, setAuthenticatedUser] = useState(_authenticatedUser);
 
   useEffect(() => {
     axiosInstance.get('/user')
       .then(({data}) => setAuthenticatedUser(data))
       .catch(error => console.error(error));
-  }, [])
+  }, []);
 
   return <AuthenticatedUser.Provider value={authenticatedUser}>
     {children}

@@ -2,7 +2,7 @@ import { BoxArrowInRight } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import { useRef } from 'react';
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import Button from '../components/Button.jsx';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
@@ -49,16 +49,8 @@ export default function Home() {
               <Offcanvas.Body>
                 <Nav
                   className="justify-content-end flex-grow-1">
-                  <Link to="/login">
-                    <Button variant="outline-dark" className="border-0">
-                      Sign In 
-                    </Button>
-                  </Link>
-                  <Link to="/register" className="ms-2">
-                    <Button variant="outline-dark" className="border-0">
-                      Register
-                    </Button>
-                  </Link>
+                  <Button to="/login">Sign In</Button>
+                  <Button className="ms-2" to="/register">Register</Button>
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

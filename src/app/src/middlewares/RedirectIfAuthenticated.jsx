@@ -13,7 +13,7 @@ export default function RedirectIfAuthenticated({children}) {
       .then(({data}) => {
         navigateTo('/dashboard');
       })
-  }, [authenticationToken]);
+  });
 
   return children;
 }

@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import { AuthenticationProvider as AuthenticationContextProvider } from './contexts/Authentication.jsx';
-import { AuthenticatedUserProvider as AuthenticatedUserContextProvider } from './contexts/AuthenticatedUser.jsx';
 import { Navigate } from 'react-router-dom';
 import AccountRegisteredPage from './pages/AccountRegistered.jsx';
 import ApiPage from "./pages/Api.jsx";
@@ -108,11 +107,9 @@ const router = createBrowserRouter([
     element:
     <AuthenticationContextProvider>
       <EnsureAuthenticatedMiddleware>
-        <AuthenticatedUserContextProvider>
           <DashboardLayout>
             <UserIndexPage />
           </DashboardLayout>
-        </AuthenticatedUserContextProvider>
       </EnsureAuthenticatedMiddleware>
     </AuthenticationContextProvider>
   }
