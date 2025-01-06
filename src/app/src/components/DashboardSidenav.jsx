@@ -101,7 +101,7 @@ export default function DashboardSidenav() {
       {/* ><BoxArrowLeft /></Button> */}
       <Dropdown>
         <Dropdown.Toggle variant="outline-dark" className="border-0" title="Menu">
-          {/* <ThreeDotsVertical /> */}
+          <ThreeDotsVertical />
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <Dropdown.Item><MoonStars /><span className="ms-2">Dark Mode</span></Dropdown.Item>
