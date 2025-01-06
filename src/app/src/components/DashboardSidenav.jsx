@@ -21,9 +21,9 @@ export default function DashboardSidenav() {
   const [taskLists, setTaskLists] = useState([]);
 
   const [authenticatedUser, setAuthenticatedUser] = useState({
-    name: 'authenticatedUser.name',
+    name: 'aU.name',
     role: {
-      name: 'authenticatedUser.role.name',
+      name: 'aU.r.name',
     },
   });
 
