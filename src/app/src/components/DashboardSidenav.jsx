@@ -5,10 +5,13 @@ import { useState } from 'react';
 import { BoxArrowLeft } from 'react-bootstrap-icons';
 import { Check2Square } from 'react-bootstrap-icons';
 import { EmojiSmile } from 'react-bootstrap-icons';
+import { MoonStars } from 'react-bootstrap-icons';
 import { People } from 'react-bootstrap-icons';
+import { ThreeDotsVertical } from 'react-bootstrap-icons';
 import axiosInstance from '../utilities/axios-instance.js';
 import Avatar from 'boring-avatars';
 import Button from '../components/Button.jsx';
+import Dropdown from 'react-bootstrap/Dropdown';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Stack from 'react-bootstrap/Stack';
 
@@ -87,15 +90,28 @@ export default function DashboardSidenav() {
           borderRadius: "50%",
         }}
       />
-      <div className="ms-2">
+      <div className="ms-2 flex-grow-1">
         <h5 className="m-0 fw-bold">{ authenticatedUser.name }</h5>
         <small>{ authenticatedUser.role.name }</small>
       </div>
-      <Button
-        className="ms-auto"
-        to="/logout"
-        title="Sign out"
-      ><BoxArrowLeft /></Button>
+      {/* <Button */}
+      {/*   className="ms-auto" */}
+      {/*   to="/logout" */}
+      {/*   title="Sign out" */}
+      {/* ><BoxArrowLeft /></Button> */}
+      <Dropdown>
+        <Dropdown.Toggle variant="outline-dark" className="border-0" title="Menu">
+          {/* <ThreeDotsVertical /> */}
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          <Dropdown.Item><MoonStars /><span className="ms-2">Dark Mode</span></Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item href="/logout">
+            <BoxArrowLeft />
+            <span className="ms-2">Sign Out</span>
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
     </Stack>
     <div className="mt-3" />
     {nav.map((item) => <ListGroup><ListGroup.Item
@@ -117,6 +133,5 @@ export default function DashboardSidenav() {
           onClick={() => navigateTo(item.link)}
         >{item.name}</ListGroup.Item>)}</ListGroup>}
     </ListGroup.Item></ListGroup>)}
-  </>;
-
+  </>
 }
