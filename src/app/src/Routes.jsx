@@ -1,6 +1,7 @@
 import { Redirect } from "react-router-dom";
 import { Route } from "react-router-dom";
 import { Routes as ReactRouterDomRoutes } from "react-router-dom";
+import { AuhtenticatedUserProvider as AuthenticatedUserContextProvider } from './contexts/AuthenticatedUser.jsx';
 import { AuthenticationProvider as AuthenticationContextProvider } from './contexts/Authentication.jsx';
 import { Navigate } from 'react-router-dom';
 import AccountRegisteredPage from './pages/AccountRegistered.jsx';
@@ -9,7 +10,7 @@ import DashboardLayout from './layouts/Dashboard.jsx';
 import FormLayout from './layouts/Form.jsx'
 import EmailVerifiedPage from './pages/EmailVerified.jsx';
 import EnsureAuthenticatedMiddleware from './middlewares/EnsureAuthenticated.jsx'
-import Hello from './pages/Hello.jsx';
+import HelloPage from './pages/Hello.jsx';
 import HomePage from "./pages/Home.jsx";
 import PreferenceFeatureTestForm from "./pages/PreferenceFeatureTestForm.jsx";
 import RedirectIfAuthenticatedMiddleware from './middlewares/RedirectIfAuthenticated.jsx';
@@ -30,6 +31,12 @@ export default function Routes() {
       </Route>
       <Route element={<EnsureAuthenticatedMiddleware />}>
         <Route path="/dashboard" element={<Redirect to="/users" />} />
+        <Route element={<AuthenticatedUserContextProvider />}>
+          <Route element={<DashboardLayout />}>
+            <Route path="/hello" element={<HelloPage />} />
+            <Route path="/users" element={<UserIndexPage />} />
+          </Route>
+        </Route>
       </Route>
     </Route>
   </ReactRouterDomRoutes>
