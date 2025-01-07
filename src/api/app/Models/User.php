@@ -17,7 +17,8 @@ class User extends Authenticatable /* implements MustVerifyEmail */
     use HasFactory, Notifiable, HasApiTokens;
 
      protected $with = [
-         'role'
+        'role',
+        'preferences',
      ];
 
     /**

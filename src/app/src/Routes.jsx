@@ -1,7 +1,7 @@
 import { Redirect } from "react-router-dom";
 import { Route } from "react-router-dom";
 import { Routes as ReactRouterDomRoutes } from "react-router-dom";
-import { AuhtenticatedUserProvider as AuthenticatedUserContextProvider } from './contexts/AuthenticatedUser.jsx';
+import { AuthenticatedUserProvider as AuthenticatedUserContextProvider } from './contexts/AuthenticatedUser.jsx';
 import { AuthenticationProvider as AuthenticationContextProvider } from './contexts/Authentication.jsx';
 import { Navigate } from 'react-router-dom';
 import AccountRegisteredPage from './pages/AccountRegistered.jsx';
