@@ -5,7 +5,7 @@ A to-do list app built with Laravel 11 and React 18, which I use as a template f
 
 ## Installation
 1. Create a database
-2. Navigate to ```src/api```
+2. From the root directory of this repo, navigate to ```src/api```
 3. Copy the ```.env.example``` file and rename it to ```.env```
 4. Edit the ```.env``` file to match your environment configuration
 5. Execute
@@ -15,7 +15,7 @@ php artisan migrate:fresh --seed
 php artisan key:generate
 php artisan storage:link
 ```
-6. Navigate to ```src/app```
+6. From the root directory of this repo, navigate to ```src/app```
 7. Execute
 ```bash
 npm install
