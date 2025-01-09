@@ -22,11 +22,11 @@ npm install
 ```
 
 ## Usage
-In a terminal pointed to ```src/api```, execute
+From the root directory of this repo, in a terminal pointed to ```src/api```, execute
 ```bash
 php artisan serve
 ```
-Then, in another terminal pointed to ```src/app```, execute
+Then, from the root directory of this repo, in another terminal pointed to ```src/app```, execute
 ```bash
 npm run dev
 ```
