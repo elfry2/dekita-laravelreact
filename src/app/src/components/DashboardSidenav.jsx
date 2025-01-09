@@ -120,7 +120,7 @@ export default function DashboardSidenav() {
       className="border-0 pe-0"
       variant={(Object.hasOwn(item, 'link') && useMatch(item.link)) ? 'secondary' : ''}
       key={item.name}
-      onClick={() => navigateTo(item.link)}
+      onClick={() => !Object.hasOwn(item, 'items') && navigateTo(item.link)}
     >
       {item.icon && <item.icon className="me-2" />}
       {item.name}
