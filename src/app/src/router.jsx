@@ -20,99 +20,115 @@ import VerifyEmailPage from './pages/VerifyEmail.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />
-  },
-  {
-    path: "/dashboard",
-    element: <Navigate to="/hello" />
-  },
-  {
-    path: '/test/preferences',
-    element:
-    <AuthenticationContextProvider>
-      <EnsureAuthenticatedMiddleware>
-        <PreferenceFeatureTestForm />
-      </EnsureAuthenticatedMiddleware>
-    </AuthenticationContextProvider>
-  },
-  {
-    path: '/login',
-    element:
-    <AuthenticationContextProvider>
-      <RedirectIfAuthenticatedMiddleware>
+    children: [
+      {
+        index: true,
+        element: <HomePage />
+      },
+      {
+        path: "dashboard",
+        element: <Navigate to="/hello" />
+      },
+      {
+        path: 'test',
+        children: [
+          {
+            path: 'preferences',
+            element:
+            <AuthenticationContextProvider>
+              <EnsureAuthenticatedMiddleware>
+                <PreferenceFeatureTestForm />
+              </EnsureAuthenticatedMiddleware>
+            </AuthenticationContextProvider>
+          }
+        ]
+      },
+      {
+        path: 'login',
+        element:
+        <AuthenticationContextProvider>
+          <RedirectIfAuthenticatedMiddleware>
+            <FormLayout>
+              <LoginPage />
+            </FormLayout>
+          </RedirectIfAuthenticatedMiddleware>,
+        </AuthenticationContextProvider>
+      },
+      {
+        path: 'register',
+        element:
+        <AuthenticationContextProvider>
+          <RedirectIfAuthenticatedMiddleware>
+            <FormLayout>
+              <RegisterPage />
+            </FormLayout>
+          </RedirectIfAuthenticatedMiddleware>
+        </AuthenticationContextProvider>
+      },
+      {
+        path: 'logout',
+        element:
+        <AuthenticationContextProvider>
+          <EnsureAuthenticatedMiddleware>
+            <LogoutPage />
+          </EnsureAuthenticatedMiddleware>
+        </AuthenticationContextProvider>
+      },
+      {
+        path: 'hello',
+        element:
+        <AuthenticationContextProvider>
+          <EnsureAuthenticatedMiddleware>
+            <DashboardLayout>
+              <Hello />
+            </DashboardLayout>
+          </EnsureAuthenticatedMiddleware>
+        </AuthenticationContextProvider>
+      },
+      {
+        path: 'account-registered',
+        element:
         <FormLayout>
-          <LoginPage />
+          <AccountRegisteredPage />
         </FormLayout>
-      </RedirectIfAuthenticatedMiddleware>,
-    </AuthenticationContextProvider>
-  },
-  {
-    path: '/register',
-    element:
-    <AuthenticationContextProvider>
-      <RedirectIfAuthenticatedMiddleware>
+      },
+      {
+        path: 'verify-email/:email',
+        element: 
         <FormLayout>
-          <RegisterPage />
+          <VerifyEmailPage />
         </FormLayout>
-      </RedirectIfAuthenticatedMiddleware>
-    </AuthenticationContextProvider>
+      },
+      {
+        path: 'email-verified',
+        element: 
+        <FormLayout>
+          <EmailVerifiedPage />
+        </FormLayout>
+      },
+      {
+        path: 'api',
+        children: [
+          {
+            path: 'user',
+            element: <ApiPage url="/user" />
+          }
+        ]
+      },
+      {
+        path: 'users',
+        element:
+        <AuthenticationContextProvider>
+          <EnsureAuthenticatedMiddleware>
+            <DashboardLayout>
+              <UserIndexPage />
+            </DashboardLayout>
+          </EnsureAuthenticatedMiddleware>
+        </AuthenticationContextProvider>
+      }
+
+    ]
   },
-  {
-    path: '/logout',
-    element:
-    <AuthenticationContextProvider>
-      <EnsureAuthenticatedMiddleware>
-        <LogoutPage />
-      </EnsureAuthenticatedMiddleware>
-    </AuthenticationContextProvider>
-  },
-  {
-    path: '/hello',
-    element:
-    <AuthenticationContextProvider>
-      <EnsureAuthenticatedMiddleware>
-        <DashboardLayout>
-          <Hello />
-        </DashboardLayout>
-      </EnsureAuthenticatedMiddleware>
-    </AuthenticationContextProvider>
-  },
-  {
-    path: '/account-registered',
-    element:
-    <FormLayout>
-      <AccountRegisteredPage />
-    </FormLayout>
-  },
-  {
-    path: 'verify-email/:email',
-    element: 
-    <FormLayout>
-      <VerifyEmailPage />
-    </FormLayout>
-  },
-  {
-    path: 'email-verified',
-    element: 
-    <FormLayout>
-      <EmailVerifiedPage />
-    </FormLayout>
-  },
-  {
-    path: "/api/user",
-    element: <ApiPage url="/user" />
-  },
-  {
-    path: '/users',
-    element:
-    <AuthenticationContextProvider>
-      <EnsureAuthenticatedMiddleware>
-          <DashboardLayout>
-            <UserIndexPage />
-          </DashboardLayout>
-      </EnsureAuthenticatedMiddleware>
-    </AuthenticationContextProvider>
-  }
 ]);
 
 export default router;

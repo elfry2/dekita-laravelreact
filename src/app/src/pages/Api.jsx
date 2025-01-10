@@ -12,5 +12,5 @@ export default function Api({url}) {
       });
   }, []);
 
-  return response;
+  return <pre>{JSON.stringify(response, null, 2)}</pre>;
 }
