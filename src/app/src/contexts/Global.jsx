@@ -10,14 +10,14 @@ export const useGlobal = () => useContext(Global);
 export const GlobalProvider = ({children}) => {
   const [_global, _setGlobal] = useState(config);
 
-  const setGlobal = (value) => {
+  const setGlobal = value => {
     _setGlobal(value);
     
-    console.log(_global);
+    console.log(value);
   }
 
   return <Global.Provider value={{
     global: _global,
-    setGlobal: _setGlobal
+    setGlobal
   }}>{children}</Global.Provider>
 }

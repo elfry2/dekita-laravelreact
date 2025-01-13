@@ -21,8 +21,6 @@ export default function GlobalContextConsumer({children}) {
             theme: data,
           },
         });
-
-        console.log(globalContext);
       })
   }, []);
 
