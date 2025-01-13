@@ -59,7 +59,7 @@ export default function Home() {
       ))}
       <Row className="align-items-center vh-100 mx-5">
         <Col>
-          <span className="h1 bg-white px-2 py-1 fw-bold">
+          <span className="h1 bg-white text-dark px-2 py-1 fw-bold">
             Stay organised.
           </span>
         </Col>

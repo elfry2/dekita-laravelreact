@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import classnames from 'classnames';
+import config from '../config.js';
 import ReactBootstrapButton from 'react-bootstrap/Button';
 
 export default function Button(props) {
@@ -13,7 +14,7 @@ export default function Button(props) {
 
   _props.className += ' border-0';
 
-  _props.variant = 'outline-dark'
+  _props.variant = 'outline-' + (config.app.theme == 'light' ? 'dark' : 'light');
 
   return <ReactBootstrapButton {..._props}>
     {_props.children}

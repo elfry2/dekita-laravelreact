@@ -2,13 +2,16 @@ import { useEffect } from 'react';
 import { useMatch } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useAppTheme as useAppThemeContext } from '../contexts/AppTheme.jsx';
 import { BoxArrowLeft } from 'react-bootstrap-icons';
 import { Check2Square } from 'react-bootstrap-icons';
 import { EmojiSmile } from 'react-bootstrap-icons';
 import { MoonStars } from 'react-bootstrap-icons';
 import { People } from 'react-bootstrap-icons';
+import { Sun } from 'react-bootstrap-icons';
 import { ThreeDotsVertical } from 'react-bootstrap-icons';
 import axiosInstance from '../utilities/axios-instance.js';
+import config from '../config.js';
 import Avatar from 'boring-avatars';
 import Button from '../components/Button.jsx';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -26,6 +29,8 @@ export default function DashboardSidenav() {
       name: 'aU.r.name',
     },
   });
+
+  const { appTheme, setAppTheme } = useAppThemeContext();
 
   const nav = [
     {
@@ -61,6 +66,17 @@ export default function DashboardSidenav() {
       link: '/users',
     },
   ];
+
+  const toggleAppTheme = () => {
+    const _appTheme = appTheme == 'light' ? 'dark' : 'light';
+
+    axiosInstance.post('/preferences', {
+      key: 'app.theme',
+      value: _appTheme,
+    });
+
+    setAppTheme(_appTheme);
+  }
 
   useEffect(() => {
     axiosInstance.get('/user')
@@ -100,11 +116,11 @@ export default function DashboardSidenav() {
       {/*   title="Sign out" */}
       {/* ><BoxArrowLeft /></Button> */}
       <Dropdown>
-        <Dropdown.Toggle variant="outline-dark" className="border-0" title="Menu">
+        <Dropdown.Toggle variant={'outline-' + (appTheme == 'light' ? 'dark' : 'light')} className="border-0" title="Menu">
           <ThreeDotsVertical />
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item><MoonStars /><span className="ms-2">Dark Mode</span></Dropdown.Item>
+          <Dropdown.Item onClick={toggleAppTheme}>{ appTheme == 'light' ? <Sun /> : <MoonStars />}<span className="ms-2">{appTheme == 'light' ? 'Dark' : 'Light'} Mode</span></Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item href="/logout">
             <BoxArrowLeft />
