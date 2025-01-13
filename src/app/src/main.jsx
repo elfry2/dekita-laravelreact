@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'typeface-roboto';
 import './index.css';
-import { AppThemeProvider as AppThemeContextProvider } from './contexts/AppTheme.jsx';
+import { GlobalProvider as GlobalContextProvider } from './contexts/Global.jsx';
 import { BrowserRouter } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { RouterProvider } from 'react-router-dom';
@@ -9,7 +9,7 @@ import { RouterProvider } from 'react-router-dom';
 import router from './router.jsx';
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import ThisIsSoDumb from './layouts/ThisIsSoDumb.jsx';
+import GlobalContextConsumer from './layouts/GlobalContextConsumer.jsx';
 // import Routes from './Routes.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -17,10 +17,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     {/* <App /> */}
     {/* <HomePage /> */}
     {/* <BrowserRouter><Routes /></BrowserRouter> */}
-    <AppThemeContextProvider>
-      <ThisIsSoDumb>
+    <GlobalContextProvider>
+      <GlobalContextConsumer>
         <RouterProvider router={router} />
-      </ThisIsSoDumb>
-    </AppThemeContextProvider>
+      </GlobalContextConsumer>
+    </GlobalContextProvider>
   </React.StrictMode>
 )

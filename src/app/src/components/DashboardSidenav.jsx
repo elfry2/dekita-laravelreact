@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useMatch } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useAppTheme as useAppThemeContext } from '../contexts/AppTheme.jsx';
+import { useGlobal as useGlobalContext } from '../contexts/Global.jsx';
 import { BoxArrowLeft } from 'react-bootstrap-icons';
 import { Check2Square } from 'react-bootstrap-icons';
 import { EmojiSmile } from 'react-bootstrap-icons';
@@ -30,7 +30,10 @@ export default function DashboardSidenav() {
     },
   });
 
-  const { appTheme, setAppTheme } = useAppThemeContext();
+  const {
+    global: globalContext,
+    setGlobal: setGlobalContext
+  } = useGlobalContext();
 
   const nav = [
     {
@@ -68,14 +71,20 @@ export default function DashboardSidenav() {
   ];
 
   const toggleAppTheme = () => {
-    const _appTheme = appTheme == 'light' ? 'dark' : 'light';
+    const appTheme = (globalContext.app.theme == 'light' ? 'dark' : 'light');
 
     axiosInstance.post('/preferences', {
       key: 'app.theme',
-      value: _appTheme,
+      value: appTheme,
     });
 
-    setAppTheme(_appTheme);
+    setGlobalContext({
+      ...globalContext,
+      app: {
+        ...globalContext.app,
+        theme: appTheme,
+      },
+    });
   }
 
   useEffect(() => {
@@ -86,16 +95,6 @@ export default function DashboardSidenav() {
 
   return <>
     <Stack direction="horizontal">
-      {/* <img */}
-      {/*   style={{ */}
-      {/*     height: "48px", */}
-      {/*     width: "48px", */}
-      {/*     borderRadius: "50%", */}
-      {/*     backgroundColor: "#EEE" */}
-      {/*   }} */}
-      {/*   src={ "authContext.user.avatar" } */}
-      {/*   alt={ "" } */}
-      {/* /> */}
       <Avatar
         name={"" + Math.random()}
         title={Math.random()}
@@ -116,11 +115,11 @@ export default function DashboardSidenav() {
       {/*   title="Sign out" */}
       {/* ><BoxArrowLeft /></Button> */}
       <Dropdown>
-        <Dropdown.Toggle variant={'outline-' + (appTheme == 'light' ? 'dark' : 'light')} className="border-0" title="Menu">
+        <Dropdown.Toggle variant={'outline-' + (globalContext.app.theme == 'light' ? 'dark' : 'light')} className="border-0" title="Menu">
           <ThreeDotsVertical />
         </Dropdown.Toggle>
         <Dropdown.Menu>
-          <Dropdown.Item onClick={toggleAppTheme}>{ appTheme == 'light' ? <Sun /> : <MoonStars />}<span className="ms-2">{appTheme == 'light' ? 'Dark' : 'Light'} Mode</span></Dropdown.Item>
+          <Dropdown.Item onClick={toggleAppTheme}>{ globalContext.app.theme == 'light' ? <Sun /> : <MoonStars />}<span className="ms-2">{globalContext.app.name == 'light' ? 'Dark' : 'Light'} Mode</span></Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item href="/logout">
             <BoxArrowLeft />
