@@ -93,7 +93,7 @@ export default function UserIndex() {
     { collection.length == 0 ? <NoDataCenteredParagraph suggestCreating /> :
     <div className="rounded border mt-3">
       <Table striped className="m-0 align-middle">
-         <><thead>
+         <thead>
           <tr>
             <th>#</th>
             <th>ID</th>
