@@ -3,7 +3,6 @@ import 'typeface-roboto';
 import './index.css';
 import { GlobalProvider as GlobalContextProvider } from './contexts/Global.jsx';
 import { BrowserRouter } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 import { RouterProvider } from 'react-router-dom';
 // import App from './App.jsx'
 import router from './router.jsx';

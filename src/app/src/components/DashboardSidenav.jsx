@@ -15,6 +15,7 @@ import config from '../config.js';
 import Avatar from 'boring-avatars';
 import Button from '../components/Button.jsx';
 import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownToggle from '../components/DropdownToggle.jsx';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Stack from 'react-bootstrap/Stack';
 
@@ -115,13 +116,11 @@ export default function DashboardSidenav() {
       {/*   title="Sign out" */}
       {/* ><BoxArrowLeft /></Button> */}
       <Dropdown>
-        <Dropdown.Toggle variant={'outline-' + (globalContext.app.theme == 'light' ? 'dark' : 'light')} className="border-0" title="Menu">
-          <ThreeDotsVertical />
-        </Dropdown.Toggle>
+        <DropdownToggle />
         <Dropdown.Menu>
           <Dropdown.Item onClick={toggleAppTheme}>{ globalContext.app.theme == 'light' ? <Sun /> : <MoonStars />}<span className="ms-2">{globalContext.app.name == 'light' ? 'Dark' : 'Light'} Mode</span></Dropdown.Item>
           <Dropdown.Divider />
-          <Dropdown.Item href="/logout">
+          <Dropdown.Item onClick={() => navigateTo('/logout')}>
             <BoxArrowLeft />
             <span className="ms-2">Sign Out</span>
           </Dropdown.Item>
