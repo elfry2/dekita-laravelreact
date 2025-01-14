@@ -90,9 +90,10 @@ export default function UserIndex() {
       <h2 className="flex-grow-1 fw-bold m-0 p-0">{title}</h2>
       <Button onClick={onCreationButtonClick}><PlusLg /><span class="ms-2">New</span></Button>
     </Stack>
+    { collection.length == 0 ? <NoDataCenteredParagraph suggestCreating /> :
     <div className="rounded border mt-3">
-      <Table striped hover className="m-0 align-middle">
-        { collection.length == 0 ? <div class="my-3"><NoDataCenteredParagraph suggestCreating /></div> : <><thead>
+      <Table striped className="m-0 align-middle">
+         <><thead>
           <tr>
             <th>#</th>
             <th>ID</th>
@@ -125,8 +126,8 @@ export default function UserIndex() {
                 </Dropdown>
               </td>
             </tr>)}
-          </tbody></> }
+          </tbody>
       </Table>
-    </div>
+    </div> }
   </div>;
 }
