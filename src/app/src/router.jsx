@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { AuthenticationProvider as AuthenticationContextProvider } from './contexts/Authentication.jsx';
 import { Navigate } from 'react-router-dom';
 import AccountRegisteredPage from './pages/AccountRegistered.jsx';
-import ApiPage from "./pages/Api.jsx";
+import ApiTestPage from "./pages/ApiTest.jsx";
 import DashboardLayout from './layouts/Dashboard.jsx';
 import FormLayout from './layouts/Form.jsx'
 import EmailVerifiedPage from './pages/EmailVerified.jsx';
@@ -107,13 +107,8 @@ const router = createBrowserRouter([
         </FormLayout>
       },
       {
-        path: 'api',
-        children: [
-          {
-            path: 'user',
-            element: <ApiPage url="/user" />
-          }
-        ]
+        path: 'api-test',
+        element: <ApiTestPage />,
       },
       {
         path: 'users',

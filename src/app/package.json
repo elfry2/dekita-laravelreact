@@ -19,6 +19,7 @@
     "datatables.net-react": "^1.0.0",
     "dotenv": "^16.4.5",
     "pluralize": "^8.0.0",
+    "query-string": "^9.1.1",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
     "react-bootstrap-icons": "^1.11.4",

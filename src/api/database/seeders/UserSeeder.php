@@ -33,5 +33,7 @@ class UserSeeder extends Seeder
         ];
 
         foreach($records as $record) $model::create($record);
+
+        $model::factory(50)->create();
     }
 }

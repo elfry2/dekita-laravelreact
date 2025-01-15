@@ -3,13 +3,17 @@ import { useEffect } from 'react';
 import { useGlobal as useGlobalContext } from '../contexts/Global.jsx';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { ChevronLeft } from 'react-bootstrap-icons';
+import { ChevronRight } from 'react-bootstrap-icons';
 import { Helmet } from 'react-helmet';
 import { PencilSquare } from 'react-bootstrap-icons';
 import { PlusLg } from 'react-bootstrap-icons';
 import { Trash } from 'react-bootstrap-icons';
 import axiosInstance from '../utilities/axios-instance.js';
 import pluralize from 'pluralize';
+import queryString from 'query-string';
 import Button from '../components/Button.jsx';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownItem from '../components/DropdownItem.jsx';
 import DropdownToggle from '../components/DropdownToggle.jsx';
@@ -26,6 +30,8 @@ export default function UserIndex() {
    */
   const [object, setObject] = useState('user');
 
+  const [page, setPage] = useState(1);
+
   /**
    * The fetched collection of the object being manipulated.
    */
@@ -35,10 +41,19 @@ export default function UserIndex() {
    * Fetch collection on mount.
    */
   useEffect(() => {
-    axiosInstance.get('/' + pluralize(object))
-      .then(({data}) => setCollection(data))
-      .catch(error => console.error(error));
-  }, []);
+    axiosInstance.get('/' + pluralize(object), {
+      params: {
+        page: page,
+        perPage: 10,
+      }
+    })
+      .catch(error => console.error(error))
+      .then(({data}) => {
+        console.log(data);
+
+        setCollection(data);
+      });
+  }, [page]);
 
   /**
     * The title that is shown on top of the page and on the browser tab.
@@ -77,6 +92,15 @@ export default function UserIndex() {
 
   // Table.use(DataTableStyleBootstrap5);
 
+  const onNavigationButtonClick = (direction = 'next') => {
+    if(direction == 'next') {
+      setPage(page+1);
+      return;
+    }
+
+    setPage(page-1);
+  }
+
   const {
     global: globalContext,
     setGlobal: setGlobalContext
@@ -89,8 +113,13 @@ export default function UserIndex() {
     <Stack direction="horizontal">
       <h2 className="flex-grow-1 fw-bold m-0 p-0">{title}</h2>
       <Button onClick={onCreationButtonClick}><PlusLg /><span class="ms-2">New</span></Button>
+      <ButtonGroup aria-label="Basic example">
+        <Button onClick={() => onNavigationButtonClick('previous')}><ChevronLeft /></Button>
+        <Button disabled>{page}</Button>
+        <Button onClick={() => onNavigationButtonClick('next')}><ChevronRight /></Button>
+    </ButtonGroup>
     </Stack>
-    { collection.length == 0 ? <NoDataCenteredParagraph suggestCreating /> :
+    { collection.data && (collection.data.length == 0) ? <NoDataCenteredParagraph suggestCreating /> :
     <div className="rounded border mt-3">
       <Table striped className="m-0 align-middle">
          <thead>
@@ -105,7 +134,7 @@ export default function UserIndex() {
           </tr>
         </thead>
           <tbody>
-            {collection.map((item, index) => <tr key={item.id}>
+            {collection.data && collection.data.map((item, index) => <tr key={item.id}>
               <td>{index + 1}</td>
               <td>{item.id}</td>
               <td>{item.name}</td>
