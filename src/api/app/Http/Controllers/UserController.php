@@ -12,7 +12,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        return User::paginate($request->input('perPage'))->toJson();
+        return User::paginate($request->perPage ?: 20)->toJson();
     }
 
     /**

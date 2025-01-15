@@ -32,6 +32,8 @@ export default function UserIndex() {
 
   const [page, setPage] = useState(1);
 
+  const [perPage, setPerPage] = useState(10);
+
   /**
    * The fetched collection of the object being manipulated.
    */
@@ -44,7 +46,7 @@ export default function UserIndex() {
     axiosInstance.get('/' + pluralize(object), {
       params: {
         page: page,
-        perPage: 10,
+        perPage: perPage,
       }
     })
       .catch(error => console.error(error))
@@ -135,7 +137,7 @@ export default function UserIndex() {
         </thead>
           <tbody>
             {collection.data && collection.data.map((item, index) => <tr key={item.id}>
-              <td>{index + 1}</td>
+              <td>{index + 1 + ((page - 1) * perPage)}</td>
               <td>{item.id}</td>
               <td>{item.name}</td>
               <td>{item.username}</td>
