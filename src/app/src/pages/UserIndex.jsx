@@ -17,6 +17,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownItem from '../components/DropdownItem.jsx';
 import DropdownToggle from '../components/DropdownToggle.jsx';
+import Form from 'react-bootstrap/Form';
 import NoDataCenteredParagraph from '../components/NoDataCenteredParagraph.jsx';
 // import DataTableStyleBootstrap5 from 'datatables.net-bs5';
 import Stack from 'react-bootstrap/Stack';
@@ -117,11 +118,11 @@ export default function UserIndex() {
       <Button onClick={onCreationButtonClick}><PlusLg /><span class="ms-2">New</span></Button>
       <ButtonGroup aria-label="Basic example">
         <Button onClick={() => onNavigationButtonClick('previous')}><ChevronLeft /></Button>
-        <Button disabled>{page}</Button>
+        <Form.Control type="number" value={page} style={{maxWidth: "4em"}} className="text-center"/>
         <Button onClick={() => onNavigationButtonClick('next')}><ChevronRight /></Button>
     </ButtonGroup>
     </Stack>
-    { collection.data && (collection.data.length == 0) ? <NoDataCenteredParagraph suggestCreating /> :
+    { !Object.hasOwn(collection, 'data') || collection.data.length == 0 ? <NoDataCenteredParagraph suggestCreating /> :
     <div className="rounded border mt-3">
       <Table striped className="m-0 align-middle">
          <thead>
