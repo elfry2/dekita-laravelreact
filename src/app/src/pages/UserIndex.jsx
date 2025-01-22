@@ -61,19 +61,19 @@ export default function UserIndex() {
 
 
   const onCreationButtonClick = () => {
-    navigateTo('create')
+    navigateTo('new');
   }
 
   const onShowButtonClick = (id) => {
-    navigateTo(id)
+    navigateTo(id);
   }
 
   const onModificationButtonClick = (id) => {
-    navigateTo(id + '/edit')
+    navigateTo(id + '/edit');
   }
 
   const onDeletionButtonClick = (id) => {
-    navigateTo(id + '/delete')
+    navigateTo(id + '/delete');
   }
 
   const onPreviousPageButtonClick = () => {
@@ -84,7 +84,7 @@ export default function UserIndex() {
     setQuery({
       ...query,
       page: page - 1,
-    })
+    });
   }
 
   const onNextPageButtonClick = () => {
@@ -95,14 +95,14 @@ export default function UserIndex() {
     setQuery({
       ...query,
       page: page + 1,
-    })
+    });
   }
 
   const onPageNumberNumberInputChange = (event) => {
     setQuery({
       ...query,
       page: event.target.value,
-    })
+    });
   }
 
   useEffect(() => {
@@ -111,7 +111,7 @@ export default function UserIndex() {
       */
     navigateTo({
       search: createSearchParams(query).toString(),
-    })
+    });
 
     setIsLoading(true);
 

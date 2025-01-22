@@ -12,7 +12,7 @@ import LoadingSpan from '../components/LoadingSpan';
 import Stack from 'react-bootstrap/Stack';
 import axiosInstance from '../utilities/axios-instance.js';
 
-export default function Register() {
+export default function Register({errors, setErrors}) {
 
   const nameRef = useRef();
   const usernameRef = useRef();
@@ -21,7 +21,6 @@ export default function Register() {
   const passwordConfirmationRef = useRef();
   const navigateTo = useNavigate();
 
-  const [errors, setErrors] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const { setAuthentication } = useAuthenticationContext();
@@ -60,11 +59,6 @@ export default function Register() {
   }
 
   return <>
-    <Link to="/">
-      <Button variant="outline-secondary" className="border-0">
-        <ChevronLeft /><span className="ms-2">Back</span>
-      </Button>
-    </Link>
     <Form>
       <FloatingLabel label="Name" className="mt-3">
         <Form.Control

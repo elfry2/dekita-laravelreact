@@ -13,13 +13,12 @@ import LoadingSpan from '../components/LoadingSpan';
 import Stack from 'react-bootstrap/Stack';
 import axiosInstance from '../utilities/axios-instance.js';
 
-export default function Login() {
+export default function Login({errors, setErrors}) {
 
   const usernameRef = useRef();
   const passwordRef = useRef();
   const navigateTo = useNavigate();
 
-  const [errors, setErrors] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const { setToken: setAuthenticationToken } = useAuthenticationContext();
@@ -53,18 +52,6 @@ export default function Login() {
   }
 
   return <>
-    <Link to="/">
-      <Button variant="outline-secondary" className="border-0">
-        <ChevronLeft /><span className="ms-2">Back</span>
-      </Button>
-    </Link>
-    {
-      errors && errors.messages && errors.messages.map((message) =>
-        <Alert variant="danger" key={message.toString()} dismissible>
-          {message}
-        </Alert>
-      )
-    }
     <Form>
       <FloatingLabel label="Username" className="mt-3">
         <Form.Control

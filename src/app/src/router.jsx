@@ -14,6 +14,7 @@ import RedirectIfAuthenticatedMiddleware from './middlewares/RedirectIfAuthentic
 import RegisterPage from './pages/Register.jsx';
 import LoginPage from './pages/Login.jsx';
 import LogoutPage from './pages/Logout.jsx';
+import UserCreationFormPage from './pages/UserCreationForm.jsx';
 import UserIndexPage from './pages/UserIndex.jsx';
 import VerifyEmailPage from './pages/VerifyEmail.jsx';
 
@@ -113,15 +114,25 @@ const router = createBrowserRouter([
       {
         path: 'users',
         element:
-        <AuthenticationContextProvider>
-          <EnsureAuthenticatedMiddleware>
-            <DashboardLayout>
-              <UserIndexPage />
-            </DashboardLayout>
-          </EnsureAuthenticatedMiddleware>
-        </AuthenticationContextProvider>
-      }
-
+          <AuthenticationContextProvider>
+            <EnsureAuthenticatedMiddleware>
+              <DashboardLayout>
+                <UserIndexPage />
+              </DashboardLayout>
+            </EnsureAuthenticatedMiddleware>
+          </AuthenticationContextProvider>,
+      },
+      {
+        path: 'users/new',
+        element:
+          <AuthenticationContextProvider>
+            <EnsureAuthenticatedMiddleware>
+              <FormLayout>
+                <UserCreationFormPage />
+              </FormLayout>
+            </EnsureAuthenticatedMiddleware>
+          </AuthenticationContextProvider>,
+      },
     ]
   },
 ]);
