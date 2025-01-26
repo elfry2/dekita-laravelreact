@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\PreferenceController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -26,6 +27,8 @@ Route::middleware(['auth:sanctum'])->group(function() {
     ]);
 
     Route::resource('users', UserController::class);
+
+    Route::resource('roles', RoleController::class);
 });
 
 require __DIR__.'/auth.php';
