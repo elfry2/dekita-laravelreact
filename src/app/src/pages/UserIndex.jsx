@@ -137,7 +137,7 @@ export default function UserIndex() {
       <title>{title + ' | ' + globalContext.app.name}</title>
     </Helmet>
     <Stack direction="horizontal">
-      <h2 className="flex-grow-1 fw-bold m-0 p-0">{title}</h2>
+      <h1 className="flex-grow-1 fw-bold m-0 p-0">{title}</h1>
       <Button onClick={onCreationButtonClick}><PlusLg /><span class="ms-2">New</span></Button>
       <ButtonGroup aria-label="Basic example">
         <Button onClick={onPreviousPageButtonClick} disabled={query.page <= 1}><ChevronLeft /></Button>
@@ -154,7 +154,7 @@ export default function UserIndex() {
                 <th>#</th>
                 <th>ID</th>
                 <th>Name</th>
-                <th>username</th>
+                <th>Username</th>
                 <th>Email</th>
                 <th>Role</th>
                 <th></th>
