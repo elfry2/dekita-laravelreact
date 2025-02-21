@@ -15,6 +15,7 @@ import RegisterPage from './pages/Register.jsx';
 import LoginPage from './pages/Login.jsx';
 import LogoutPage from './pages/Logout.jsx';
 import UserCreationFormPage from './pages/UserCreationForm.jsx';
+import UserModificationFormPage from './pages/UserModificationForm.jsx';
 import UserIndexPage from './pages/UserIndex.jsx';
 import VerifyEmailPage from './pages/VerifyEmail.jsx';
 
@@ -129,6 +130,17 @@ const router = createBrowserRouter([
             <EnsureAuthenticatedMiddleware>
             <FormLayout backURL="/users" title="Add User">
                 <UserCreationFormPage />
+              </FormLayout>
+            </EnsureAuthenticatedMiddleware>
+          </AuthenticationContextProvider>,
+      },
+      {
+        path: 'users/:id/edit',
+        element:
+          <AuthenticationContextProvider>
+            <EnsureAuthenticatedMiddleware>
+            <FormLayout backURL="/users" title="Add User">
+                <UserModificationFormPage />
               </FormLayout>
             </EnsureAuthenticatedMiddleware>
           </AuthenticationContextProvider>,

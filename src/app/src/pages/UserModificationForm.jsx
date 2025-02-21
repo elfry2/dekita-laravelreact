@@ -4,6 +4,7 @@ import { useGlobal as useGlobalContext } from '../contexts/Global.jsx';
 import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { PlusLg } from 'react-bootstrap-icons';
 import axiosInstance from '../utilities/axios-instance.js';
 import Button from '../components/Button.jsx';
@@ -33,7 +34,10 @@ export default function UserCreationForm({errors, setErrors}) {
 
   const [object, setObject] = useState('user');
 
-  const [primary, setPrimary] = useState([]);
+  const { id } = useParams();
+
+  const [primary, setPrimary] = useState({});
+  const [secondary, setSecondary] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isComplete, setIsComplete] = useState();
 
@@ -71,7 +75,7 @@ export default function UserCreationForm({errors, setErrors}) {
           messages: [
             {
               type: 'success',
-              content: titleCase(object) + ' created.',
+              content: titleCase(object) + ' updated.',
             },
           ],
         });
@@ -85,7 +89,15 @@ export default function UserCreationForm({errors, setErrors}) {
   }, [isComplete]);
 
   useEffect(() => {
+    usernameRef.current.value = primary.value;
+  }, [primary])
+
+  useEffect(() => {
     axiosInstance.get('/roles')
+      .catch(error => setErrors(error.response.data.errors))
+      .then(({data}) => setSecondary(data));
+
+    axiosInstance.get(`/users/${id}`)
       .catch(error => setErrors(error.response.data.errors))
       .then(({data}) => setPrimary(data));
   }, []);
@@ -151,7 +163,7 @@ export default function UserCreationForm({errors, setErrors}) {
       <Form.Select
         ref={roleRef}
         isInvalid={errors && errors.role}
-      >{primary.map((item) => <option
+      >{secondary.map((item) => <option
           key={item.id}
           value={item.id}
         >{item.name}</option>)}</Form.Select>

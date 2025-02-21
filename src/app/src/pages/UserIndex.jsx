@@ -53,7 +53,7 @@ export default function UserIndex() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [collection, setCollection] = useState([]);
+  const [primary, setPrimary] = useState([]);
 
   const [title, setTitle] = useState(pluralize(titleCase(object)));
 
@@ -90,7 +90,7 @@ export default function UserIndex() {
   const onNextPageButtonClick = () => {
     const page = Number(query.page || 1);
 
-    if (page >= collection.last_page) return;
+    if (page >= primary.last_page) return;
 
     setQuery({
       ...query,
@@ -125,7 +125,7 @@ export default function UserIndex() {
       .then(({data}) => {
         console.log(data);
 
-        setCollection(data);
+        setPrimary(data);
 
         setIsLoading(false);
       });
@@ -141,11 +141,11 @@ export default function UserIndex() {
       <Button onClick={onCreationButtonClick}><PlusLg /><span class="ms-2">New</span></Button>
       <ButtonGroup aria-label="Basic example">
         <Button onClick={onPreviousPageButtonClick} disabled={query.page <= 1}><ChevronLeft /></Button>
-        <Form.Control type="number" min="1" max={Object.hasOwn(collection, 'last_page' ? collection.last_page : 1)} value={query.page || 1} style={{maxWidth: "4em"}} className="text-center" onChange={() => onPageNumberNumberInputChange(event)}/>
-        <Button onClick={onNextPageButtonClick} disabled={query.page >= collection.last_page}><ChevronRight /></Button>
+        <Form.Control type="number" min="1" max={Object.hasOwn(primary, 'last_page' ? primary.last_page : 1)} value={query.page || 1} style={{maxWidth: "4em"}} className="text-center" onChange={() => onPageNumberNumberInputChange(event)}/>
+        <Button onClick={onNextPageButtonClick} disabled={query.page >= primary.last_page}><ChevronRight /></Button>
       </ButtonGroup>
     </Stack>
-    { !Object.hasOwn(collection, 'data') || collection.data.length == 0 ? <NoDataCenteredParagraph suggestCreating /> :
+    { !Object.hasOwn(primary, 'data') || primary.data.length == 0 ? <NoDataCenteredParagraph suggestCreating /> :
       isLoading ? <LoadingCenteredParagraph /> : 
         <div className="rounded border mt-3">
           <Table striped className="m-0 align-middle">
@@ -161,7 +161,7 @@ export default function UserIndex() {
               </tr>
             </thead>
             <tbody>
-              {collection.data && collection.data.map((item, index) => <tr key={item.id}>
+              {primary.data && primary.data.map((item, index) => <tr key={item.id}>
                 <td>{((query.page || 1) - 1) * (globalContext.app.perPage || 10) + index + 1}</td>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
