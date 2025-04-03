@@ -118,7 +118,7 @@ export default function DashboardSidenav() {
       <Dropdown>
         <DropdownToggle />
         <Dropdown.Menu>
-          <Dropdown.Item onClick={toggleAppTheme}>{ globalContext.app.theme == 'light' ? <Sun /> : <MoonStars />}<span className="ms-2">{globalContext.app.name == 'light' ? 'Dark' : 'Light'} Mode</span></Dropdown.Item>
+          <Dropdown.Item onClick={toggleAppTheme}>{ globalContext.app.theme == 'light' ? <Sun /> : <MoonStars />}<span className="ms-2">{globalContext.app.theme == 'light' ? 'Dark' : 'Light'} Mode</span></Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item onClick={() => navigateTo('/logout')}>
             <BoxArrowLeft />

@@ -1,3 +1,4 @@
+import { useGlobal as useGlobalContext } from '../contexts/Global.jsx';
 import { useState } from 'react';
 import { ChevronLeft } from 'react-bootstrap-icons';
 import Button from '../components/Button.jsx';
@@ -7,7 +8,12 @@ import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Stack from 'react-bootstrap/Stack';
 
-export default function Form({children, backURL = -1, title}) {
+export default function Form({children, backURL = -1}) {
+  const {
+    global: globalContext,
+    setGlobal: setGlobalContext
+  } = useGlobalContext();
+  
   const [errors, setErrors] = useState(null);
 
   return <Container
@@ -26,7 +32,7 @@ export default function Form({children, backURL = -1, title}) {
       <Col>
         <Stack direction="horizontal" className="align-items-center">
           <Button to={backURL}><ChevronLeft /></Button>
-          <h3 className="m-0 ms-2">{title}</h3>
+          <h3 className="m-0 ms-2">{globalContext.page.title}</h3>
         </Stack>
           {React.cloneElement(children, {errors, setErrors})}
       </Col>

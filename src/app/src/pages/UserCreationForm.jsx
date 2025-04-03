@@ -6,18 +6,19 @@ import { useRef } from 'react';
 import { useState } from 'react';
 import { PlusLg } from 'react-bootstrap-icons';
 import axiosInstance from '../utilities/axios-instance.js';
+import pluralize from 'pluralize';
 import Button from '../components/Button.jsx';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import LoadingSpan from '../components/LoadingSpan.jsx';
 import Stack from 'react-bootstrap/Stack';
 
-export default function UserCreationForm({errors, setErrors}) {
+export default function creationForm({errors, setErrors}) {
 
   /**
    * Definition order:
    * - Utilities, hooks, contexts, and other imported properties
-   * - States and other local properties
+   * - Constants, states and other local properties
    * - Handlers and other methods
    * = Side effects
    * - Constructive effects
@@ -31,9 +32,11 @@ export default function UserCreationForm({errors, setErrors}) {
     setGlobal: setGlobalContext
   } = useGlobalContext();
 
-  const [object, setObject] = useState('user');
+  const _primary = 'user';
+  const _secondary = 'role';
 
   const [primary, setPrimary] = useState([]);
+  const [secondary, setSecondary] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isComplete, setIsComplete] = useState();
 
@@ -59,7 +62,7 @@ export default function UserCreationForm({errors, setErrors}) {
       role_id: roleRef.current.value,
     }
 
-    axiosInstance.post('/users', payload)
+    axiosInstance.post(`${pluralize(_primary)}/`, payload)
       .catch(error => {
         setErrors(error.response.data.errors);
 
@@ -71,7 +74,7 @@ export default function UserCreationForm({errors, setErrors}) {
           messages: [
             {
               type: 'success',
-              content: titleCase(object) + ' created.',
+              content: `${titleCase(_primary)} created.`,
             },
           ],
         });
@@ -81,13 +84,21 @@ export default function UserCreationForm({errors, setErrors}) {
   }
 
   useEffect(() => {
-    isComplete && navigateTo('/users');
+    isComplete && navigateTo(`/${pluralize(_primary)}`);
   }, [isComplete]);
 
   useEffect(() => {
-    axiosInstance.get('/roles')
+    axiosInstance.get(`/${pluralize(_secondary)}`)
       .catch(error => setErrors(error.response.data.errors))
-      .then(({data}) => setPrimary(data));
+      .then(({data}) => setSecondary(data));
+
+    setGlobalContext({
+      ...globalContext,
+      page: {
+        ...globalContext.page,
+        title: `Add ${titleCase(_primary)}`,
+      }
+    });
   }, []);
 
   return <Form>
@@ -151,7 +162,7 @@ export default function UserCreationForm({errors, setErrors}) {
       <Form.Select
         ref={roleRef}
         isInvalid={errors && errors.role}
-      >{primary.map((item) => <option
+      >{secondary.map((item) => <option
           key={item.id}
           value={item.id}
         >{item.name}</option>)}</Form.Select>

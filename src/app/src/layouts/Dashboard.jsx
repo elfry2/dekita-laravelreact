@@ -17,11 +17,11 @@ export default function Dashboard({children}) {
   } = useGlobalContext();
   
   return <Container fluid>
-    <Row className="mt-3">
-      <Col sm="3" style={{maxWidth: "16em"}}>
+    <Row>
+      <Col sm="2" className="mt-3">
         <DashboardSidenav />
       </Col>
-      <Col>
+      <Col className="mt-3">
         {
           globalContext.messages && globalContext.messages.map((message) =>
             <Alert variant={message.type} key={message.content} dismissible>

@@ -5,20 +5,21 @@ import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { PlusLg } from 'react-bootstrap-icons';
+import { PencilSquare } from 'react-bootstrap-icons';
 import axiosInstance from '../utilities/axios-instance.js';
+import pluralize from 'pluralize';
 import Button from '../components/Button.jsx';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import LoadingSpan from '../components/LoadingSpan.jsx';
 import Stack from 'react-bootstrap/Stack';
 
-export default function UserCreationForm({errors, setErrors}) {
+export default function modificationForm({errors, setErrors}) {
 
   /**
    * Definition order:
    * - Utilities, hooks, contexts, and other imported properties
-   * - States and other local properties
+   * - Constants, states and other local properties
    * - Handlers and other methods
    * = Side effects
    * - Constructive effects
@@ -32,9 +33,10 @@ export default function UserCreationForm({errors, setErrors}) {
     setGlobal: setGlobalContext
   } = useGlobalContext();
 
-  const [object, setObject] = useState('user');
-
   const { id } = useParams();
+
+  const _primary = 'user';
+  const _secondary = 'role';
 
   const [primary, setPrimary] = useState({});
   const [secondary, setSecondary] = useState([]);
@@ -49,7 +51,7 @@ export default function UserCreationForm({errors, setErrors}) {
   const roleRef = useRef();
   const navigateTo = useNavigate();
 
-  const onAdditionButtonClick = (event) => {
+  const onModificationButtonClick = (event) => {
     event.preventDefault();
 
     setIsLoading(true);
@@ -63,7 +65,7 @@ export default function UserCreationForm({errors, setErrors}) {
       role_id: roleRef.current.value,
     }
 
-    axiosInstance.post('/users', payload)
+    axiosInstance.post(`/${pluralize(_primary)}/${id}`, payload)
       .catch(error => {
         setErrors(error.response.data.errors);
 
@@ -75,7 +77,7 @@ export default function UserCreationForm({errors, setErrors}) {
           messages: [
             {
               type: 'success',
-              content: titleCase(object) + ' updated.',
+              content: `${titleCase(_primary)} updated.`,
             },
           ],
         });
@@ -85,21 +87,34 @@ export default function UserCreationForm({errors, setErrors}) {
   }
 
   useEffect(() => {
-    isComplete && navigateTo('/users');
+    isComplete && navigateTo(`/${pluralize(_primary)}`);
   }, [isComplete]);
 
   useEffect(() => {
-    usernameRef.current.value = primary.value;
+    if(primary.id === undefined) return;
+
+    nameRef.current.value = primary.name;
+    usernameRef.current.value = primary.username;
+    emailRef.current.value = primary.email;
+    roleRef.current.value = primary.role.id;
   }, [primary])
 
   useEffect(() => {
-    axiosInstance.get('/roles')
+    axiosInstance.get(`/${pluralize(_secondary)}`)
       .catch(error => setErrors(error.response.data.errors))
       .then(({data}) => setSecondary(data));
 
-    axiosInstance.get(`/users/${id}`)
+    axiosInstance.get(`/${pluralize(_primary)}/${id}`)
       .catch(error => setErrors(error.response.data.errors))
       .then(({data}) => setPrimary(data));
+
+    setGlobalContext({
+      ...globalContext,
+      page: {
+        ...globalContext.page,
+        title: `Edit ${titleCase(_primary)}`,
+      }
+    });
   }, []);
 
   return <Form>
@@ -179,9 +194,9 @@ export default function UserCreationForm({errors, setErrors}) {
           : <Button
             type="submit"
             variant="primary"
-            onClick={onAdditionButtonClick}
+            onClick={onModificationButtonClick}
           >
-            <PlusLg /><span className="ms-2">Add</span>
+            <PencilSquare /><span className="ms-2">Edit</span>
           </Button>
       }
     </Stack>

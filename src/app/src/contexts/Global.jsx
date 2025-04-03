@@ -8,7 +8,12 @@ export const Global = createContext(config);
 export const useGlobal = () => useContext(Global);
 
 export const GlobalProvider = ({children}) => {
-  const [_global, _setGlobal] = useState(config);
+  const [_global, _setGlobal] = useState({
+    ...config,
+    page: {
+      title: ''
+    },
+    });
 
   const setGlobal = value => {
     _setGlobal(value);

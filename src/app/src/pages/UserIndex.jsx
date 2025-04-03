@@ -26,12 +26,12 @@ import Stack from 'react-bootstrap/Stack';
 // import Table from 'datatables.net-react';
 import Table from 'react-bootstrap/Table';
 
-export default function UserIndex() {
+export default function index() {
 
   /**
    * Definition order:
    * - Utilities, hooks, contexts, and other imported properties
-   * - States and other local properties
+   * - Constants, states and other local properties
    * - Handlers and other methods
    * = Side effects
    * - Constructive effects
@@ -47,7 +47,7 @@ export default function UserIndex() {
     setGlobal: setGlobalContext
   } = useGlobalContext();
 
-  const [object, setObject] = useState('user');
+  const _primary = 'user';
   
   const [query, setQuery] = useState(queryString.parse(location.search));
 
@@ -55,10 +55,7 @@ export default function UserIndex() {
 
   const [primary, setPrimary] = useState([]);
 
-  const [title, setTitle] = useState(pluralize(titleCase(object)));
-
   // Table.use(DataTableStyleBootstrap5);
-
 
   const onCreationButtonClick = () => {
     navigateTo('new');
@@ -115,7 +112,7 @@ export default function UserIndex() {
 
     setIsLoading(true);
 
-    axiosInstance.get('/' + pluralize(object), {
+    axiosInstance.get('/' + pluralize(_primary), {
       params: {
         page: query.page,
         perPage: globalContext.app.perPage,
@@ -129,15 +126,19 @@ export default function UserIndex() {
 
         setIsLoading(false);
       });
+
+    setGlobalContext({
+      ...globalContext,
+      page: {
+        ...globalContext.page,
+        title: pluralize(titleCase(_primary)),
+      }
+    });
   }, [query]);
 
 
-  return <div>
-    <Helmet>
-      <title>{title + ' | ' + globalContext.app.name}</title>
-    </Helmet>
-    <Stack direction="horizontal">
-      <h1 className="flex-grow-1 fw-bold m-0 p-0">{title}</h1>
+  return <div><Stack direction="horizontal">
+      <h1 className="flex-grow-1 fw-bold m-0 p-0">{titleCase(pluralize(_primary))}</h1>
       <Button onClick={onCreationButtonClick}><PlusLg /><span class="ms-2">New</span></Button>
       <ButtonGroup aria-label="Basic example">
         <Button onClick={onPreviousPageButtonClick} disabled={query.page <= 1}><ChevronLeft /></Button>
@@ -148,7 +149,7 @@ export default function UserIndex() {
     { !Object.hasOwn(primary, 'data') || primary.data.length == 0 ? <NoDataCenteredParagraph suggestCreating /> :
       isLoading ? <LoadingCenteredParagraph /> : 
         <div className="rounded border mt-3">
-          <Table striped className="m-0 align-middle">
+          <Table responsive striped className="m-0 align-middle">
             <thead>
               <tr>
                 <th>#</th>
@@ -185,7 +186,6 @@ export default function UserIndex() {
             </tbody>
           </Table>
         </div>
-      
     }
-  </div>;
+    </div>
 }

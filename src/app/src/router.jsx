@@ -128,7 +128,7 @@ const router = createBrowserRouter([
         element:
           <AuthenticationContextProvider>
             <EnsureAuthenticatedMiddleware>
-            <FormLayout backURL="/users" title="Add User">
+            <FormLayout backURL="/users">
                 <UserCreationFormPage />
               </FormLayout>
             </EnsureAuthenticatedMiddleware>
@@ -139,7 +139,7 @@ const router = createBrowserRouter([
         element:
           <AuthenticationContextProvider>
             <EnsureAuthenticatedMiddleware>
-            <FormLayout backURL="/users" title="Add User">
+            <FormLayout backURL="/users">
                 <UserModificationFormPage />
               </FormLayout>
             </EnsureAuthenticatedMiddleware>

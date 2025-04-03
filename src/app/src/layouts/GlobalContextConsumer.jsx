@@ -26,7 +26,7 @@ export default function GlobalContextConsumer({children}) {
 
   return <>
     <Helmet htmlAttributes={{ "data-bs-theme" : globalContext.app.theme }}>
-      <title>{globalContext.app.name}</title>
+      <title>{globalContext.page.title + (globalContext.page.title === '' ? '' : ' | ') + globalContext.app.name}</title>
     </Helmet>
     { children }
   </>;
